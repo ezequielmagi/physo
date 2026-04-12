@@ -20,7 +20,6 @@ get_header();
     <!-- Contenido -->
     <div class="physo-container">
       <div class="physo-hero__content">
-        <p class="physo-hero__eyebrow">Centro de salud y movimiento</p>
         <h1 class="physo-hero__title">
           Un espacio de movimiento seguro para tu proceso de salud.
         </h1>
