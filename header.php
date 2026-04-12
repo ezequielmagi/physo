@@ -16,16 +16,14 @@
     <div class="site-header__inner">
 
       <div class="site-logo">
-        <?php if ( has_custom_logo() ) :
-          the_custom_logo();
-        else : ?>
-          <a href="<?php echo esc_url( home_url('/') ); ?>">
-            <span>physo</span>
-          </a>
-        <?php endif; ?>
+        <a href="<?php echo esc_url( home_url('/') ); ?>">
+          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/logo-header.webp' ); ?>"
+               alt="<?php bloginfo('name'); ?>"
+               height="40">
+        </a>
       </div>
 
-      <nav class="nav-primary" id="nav-primary">
+      <nav class="nav-primary" id="nav-primary" aria-label="Navegación principal">
         <?php wp_nav_menu( [
           'theme_location' => 'primary',
           'menu_class'     => 'menu',

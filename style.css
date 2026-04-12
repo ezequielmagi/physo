@@ -62,6 +62,7 @@ Text Domain: physo
   --physo-texto:         #2C2C2C;
   --physo-texto-claro:   #666666;
   --physo-borde:         #E0E0E0;
+  --physo-fondo-header:  #EEF0D3;
 
   --physo-font-titulo:   'TT Commons', system-ui, sans-serif;
   --physo-font-cuerpo:   'TT Commons', system-ui, sans-serif;
@@ -194,10 +195,11 @@ h1, h2, h3, h4, h5 {
    HEADER
    ============================================================ */
 .site-header {
+  display: flex;
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--physo-blanco);
+  background: var(--physo-fondo-header);
   border-bottom: 1px solid transparent;
   height: 80px;
   transition: border-color .3s ease, box-shadow .3s ease;
@@ -215,9 +217,14 @@ h1, h2, h3, h4, h5 {
 .site-logo a {
   display: flex;
   align-items: center;
-  gap: .5rem;
   text-decoration: none;
 }
+
+.site-logo img {
+  width: 200px;
+  display: block;
+}
+
 .site-logo__icon {
   width: 32px;
   height: 32px;
@@ -246,7 +253,7 @@ h1, h2, h3, h4, h5 {
 .nav-primary .menu-item > a {
   display: block;
   padding: .5rem .875rem;
-  font-size: var(--physo-size-sm);
+  font-size: var(--physo-size-lg);
   font-weight: 500;
   color: var(--physo-texto);
   border-radius: var(--physo-radius);

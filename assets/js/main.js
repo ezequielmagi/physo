@@ -1,30 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile nav
+
+  // ─── Mobile nav toggle ────────────────────────────────────
   const toggle = document.getElementById('nav-toggle');
   const nav    = document.getElementById('nav-primary');
+
   if ( toggle && nav ) {
+
     toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open);
+      const isOpen = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // Cerrar al hacer click fuera
+    document.addEventListener('click', (e) => {
+      if ( nav.classList.contains('is-open') &&
+           ! nav.contains(e.target) &&
+           ! toggle.contains(e.target) ) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = '☰';
+      }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if ( e.key === 'Escape' && nav.classList.contains('is-open') ) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = '☰';
+        toggle.focus();
+      }
     });
   }
-});
 
-/* agrego animacion */
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  // ─── Mobile nav ───────────────────────────────────────────
-  const toggle = document.getElementById('nav-toggle');
-  const nav    = document.getElementById('nav-primary');
-  if ( toggle && nav ) {
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open);
-    });
-  }
-
-  // ─── Header scroll effect ─────────────────────────────────
+  // ─── Header scroll ────────────────────────────────────────
   const header = document.getElementById('site-header');
   if ( header ) {
     window.addEventListener('scroll', () => {
@@ -32,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // ─── Scroll reveal (todas las secciones) ──────────────────
+  // ─── Scroll reveal ────────────────────────────────────────
   const revealEls = document.querySelectorAll('.physo-reveal');
   if ( revealEls.length ) {
     const observer = new IntersectionObserver( (entries) => {
@@ -61,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function animateCounter(el) {
-    const target   = parseInt( el.dataset.target, 10 );
-    const duration = 1800;
-    const step     = 16;
+    const target    = parseInt( el.dataset.target, 10 );
+    const duration  = 1800;
+    const step      = 16;
     const increment = target / (duration / step);
-    let current = 0;
+    let current     = 0;
     const timer = setInterval(() => {
       current += increment;
       if ( current >= target ) {
@@ -84,12 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if ( ! btn || ! answer ) return;
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('is-open');
-      // Cerrar todos
       document.querySelectorAll('.physo-faq__item.is-open').forEach( open => {
         open.classList.remove('is-open');
         open.querySelector('.physo-faq__answer').style.maxHeight = null;
       });
-      // Abrir el clickeado si estaba cerrado
       if ( ! isOpen ) {
         item.classList.add('is-open');
         answer.style.maxHeight = answer.scrollHeight + 'px';
@@ -97,10 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ─── Slider genérico ──────────────────────────────────────
+  // ─── Slider ───────────────────────────────────────────────
   document.querySelectorAll('.physo-slider').forEach( slider => {
-    const track  = slider.querySelector('.physo-slider__track');
-    const slides = slider.querySelectorAll('.physo-slider__slide');
+    const track   = slider.querySelector('.physo-slider__track');
+    const slides  = slider.querySelectorAll('.physo-slider__slide');
     const btnPrev = slider.querySelector('.physo-slider__prev');
     const btnNext = slider.querySelector('.physo-slider__next');
     if ( ! track || slides.length < 2 ) return;
@@ -108,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let current = 0;
 
     function goTo(index) {
-      current = (index + slides.length) % slides.length;
+      current = ( index + slides.length ) % slides.length;
       track.style.transform = `translateX(-${current * 100}%)`;
       slides.forEach( (s, i) => s.classList.toggle('is-active', i === current) );
     }
@@ -116,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnPrev) btnPrev.addEventListener('click', () => goTo(current - 1));
     if (btnNext) btnNext.addEventListener('click', () => goTo(current + 1));
 
-    // Auto-play cada 5s
     setInterval(() => goTo(current + 1), 5000);
     goTo(0);
   });
