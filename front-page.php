@@ -200,6 +200,9 @@ get_header();
       </form>
     </div>
   </section>
+  <section>
+    Esto es una prueba.
+  </section>
 
 </main>
 
