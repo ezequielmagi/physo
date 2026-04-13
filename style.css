@@ -161,6 +161,7 @@ h1, h2, h3, h4, h5 {
 .physo-btn:hover::after { opacity: 1; }
 
 .physo-btn--primary { background: var(--physo-naranja); color: var(--physo-blanco); }
+.physo-btn--secondary { background: var(--physo-azul); color: var(--physo-blanco); }
 .physo-btn--primary:hover {
   background: var(--physo-naranja-hover);
   color: var(--physo-blanco);
@@ -438,9 +439,9 @@ h1, h2, h3, h4, h5 {
 .physo-hero__text {
   font-family: var(--physo-font-cuerpo);
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: 400;
   color: #EEF0D3;
-  line-height: 1.75;
+  line-height: 1.5;
   margin-bottom: 2.5rem;
   max-width: 500px;
   opacity: 0;
@@ -481,13 +482,16 @@ h1, h2, h3, h4, h5 {
   max-width: 680px;
   margin: 0 auto var(--physo-space-lg);
 }
-.physo-section-header h2 { font-size: var(--physo-size-3xl); color: var(--physo-azul); margin-bottom: 1rem; }
+/*
+.physo-section-header h2 { font-size: 28px; font-weight: 800; color: var(--physo-azul); margin-bottom: 1rem; }
 .physo-section--azul .physo-section-header h2 { color: var(--physo-blanco); }
 .physo-section--azul .physo-section-header p { color: rgba(255,255,255,.75); }
+
+*/
 .physo-eyebrow {
-  font-size: var(--physo-size-sm);
-  font-weight: 600;
-  color: var(--physo-naranja);
+  font-size: var(--physo-size-3xl);
+  font-weight: 700;
+  color: var(--physo-azul);
   text-transform: uppercase;
   letter-spacing: .1em;
   margin-bottom: .75rem;
@@ -496,12 +500,138 @@ h1, h2, h3, h4, h5 {
 /* ============================================================
    SELECTOR DE PERFIL
    ============================================================ */
-.physo-selector__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--physo-space-md); }
-.physo-selector__card { border-radius: var(--physo-radius-lg); overflow: hidden; background: var(--physo-blanco); box-shadow: var(--physo-shadow); }
-.physo-selector__img-placeholder { width: 100%; height: 220px; background: linear-gradient(135deg, #c8d8e8 0%, #a8b8c8 100%); }
-.physo-selector__card-body { padding: var(--physo-space-md); }
-.physo-selector__card-body h3 { font-size: var(--physo-size-xl); color: var(--physo-azul); margin-bottom: .75rem; }
-.physo-selector__card-body p { color: var(--physo-texto-claro); margin-bottom: 1.5rem; line-height: 1.7; }
+.physo-selector {
+  overflow: visible;
+  padding-bottom: calc(var(--physo-space-xl) + 10px);
+}
+
+.physo-selector__h2{
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--physo-azul);
+  margin-bottom: .75rem;
+}
+
+.physo-selector__p{
+  font-size: 20px;
+  color: var(--physo-texto-claro);
+  margin-bottom: 1.5rem;
+
+}
+
+.physo-selector__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--physo-space-md);
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.physo-selector__card {
+  border-radius: var(--physo-radius-lg);
+  overflow: hidden;
+  background: var(--physo-blanco);
+  box-shadow: var(--physo-shadow);
+}
+
+.physo-selector__card-image {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  border-radius: var(--physo-radius-lg) var(--physo-radius-lg) 0 0;
+}
+
+.physo-selector__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.physo-selector__img-placeholder {
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(135deg, #c8d8e8 0%, #a8b8c8 100%);
+}
+
+.physo-selector__card-body {
+  padding: 1.75rem;
+}
+
+.physo-selector__card-body h3 {
+  font-family: var(--physo-font-titulo);
+  font-size: var(--physo-size-lg);
+  font-weight: 700;
+  color: var(--physo-azul);
+  margin-bottom: .75rem;
+  line-height: 1.3;
+}
+
+.physo-selector__card-body p {
+  font-size: var(--physo-size-base);
+  color: var(--physo-texto-claro);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Card — sombra naranja base */
+.physo-selector__card {
+  position: relative;
+  border-radius: var(--physo-radius-lg);
+  overflow: visible;
+  background: var(--physo-blanco);
+  box-shadow: var(--physo-shadow);
+}
+
+.physo-selector__card-shadow {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: var(--physo-naranja);
+  border-radius: 0 0 var(--physo-radius-lg) var(--physo-radius-lg);
+  z-index: -1;
+  opacity: 1;
+}
+
+/* Asegurar que la imagen no se salga del borde redondeado */
+.physo-selector__card-image {
+  border-radius: var(--physo-radius-lg) var(--physo-radius-lg) 0 0;
+  overflow: hidden;
+}
+
+
+
+/* Elementos decorativos */
+.physo-selector__deco {
+  position: absolute;
+  font-size: 3rem;
+  opacity: .12;
+  color: var(--physo-azul);
+  pointer-events: none;
+  user-select: none;
+}
+
+.physo-selector__deco--left {
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 5rem;
+}
+
+.physo-selector__deco--right {
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4rem;
+}
+
+@media (max-width: 768px) {
+  .physo-selector__grid { grid-template-columns: 1fr; }
+  .physo-selector__deco { display: none; }
+}
 
 /* ============================================================
    TESTIMONIOS

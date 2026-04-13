@@ -41,44 +41,63 @@ get_header();
   </section>
 
   <!-- ============ SELECTOR DE PERFIL ============ -->
-  <section class="physo-section physo-section--crema physo-selector">
-    <div class="physo-container">
-      <div class="physo-section-header physo-reveal">
-        <p class="physo-eyebrow">Queremos entender tu punto de partida</p>
-        <h2>Elegí la situación que mejor represente lo que estás viviendo</h2>
-      </div>
-      <div class="physo-selector__grid physo-reveal-group">
-        <div class="physo-card physo-selector__card physo-reveal">
-          <div class="physo-selector__card-image physo-img-zoom">
-            <div class="physo-selector__img-placeholder"></div>
-          </div>
-          <div class="physo-selector__card-body">
-            <h3>Tengo una condición médica</h3>
-            <p>Querés trabajar con alguien especializado y entrenado en el cuidado de tu salud.</p>
-            <a href="#" class="physo-btn physo-btn--primary">Conocé cómo trabajo →</a>
-          </div>
-        </div>
-        <div class="physo-card physo-selector__card physo-reveal">
-          <div class="physo-selector__card-image physo-img-zoom">
-            <div class="physo-selector__img-placeholder"></div>
-          </div>
-          <div class="physo-selector__card-body">
-            <h3>Tengo una lesión o quiero mejorar mi estructura corporal</h3>
-            <p>Tu objetivo es recuperarte, moverte mejor y fortalecer tu cuerpo.</p>
-            <a href="#" class="physo-btn physo-btn--primary">Conocé cómo trabajo →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="physo-section physo-section--crema physo-selector">
+  <div class="physo-container">
 
+    <div class="physo-section-header physo-reveal">
+      <h2 class="physo-selector__h2">Queremos entender tu punto de partida</h2>
+      <p class="physo-selector__p">Cada proceso de salud es diferente.<br>Elige la situación que mejor represente lo que estás viviendo.</p>
+    </div>
+
+    <div class="physo-selector__grid physo-reveal-group">
+
+      <div class="physo-selector__card physo-reveal">
+        <div class="physo-selector__card-image physo-img-zoom">
+          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/selector-medica.png' ); ?>"
+               alt="Lesión o estructura corporal"
+               onerror="this.parentElement.classList.add('physo-selector__img-placeholder')">
+        </div>
+        <div class="physo-selector__card-body">
+          <h3>Tengo una condición médica</h3>
+          <p>Querés moverte con seguridad y entender qué tipo de ejercicio es adecuado para mi estado de salud.</p>
+          <a href="#" class="physo-btn physo-btn--secondary">
+            Conocé movimiento adaptado →
+          </a>
+        </div>
+        <!-- Sombra naranja decorativa -->
+        <div class="physo-selector__card-shadow"></div>
+      </div>
+
+      <div class="physo-card physo-selector__card physo-reveal">
+        <div class="physo-selector__card-image physo-img-zoom">
+          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/selector-lesion.png' ); ?>"
+               alt="Lesión o estructura corporal"
+               onerror="this.parentElement.classList.add('physo-selector__img-placeholder')">
+        </div>
+        <div class="physo-selector__card-body">
+          <h3>Tengo una lesión o quiero mejorar mi estructura corporal</h3>
+          <p>Buscás recuperarte, sentirte mejor y desarrollar un cuerpo más sólido y fuerte.</p>
+          <a href="#" class="physo-btn physo-btn--secondary">
+            Conocé cómo trabajamos →
+          </a>
+        </div>
+        <!-- Sombra naranja decorativa -->
+        <div class="physo-selector__card-shadow"></div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</section>
   <!-- ============ TESTIMONIOS ============ -->
   <section class="physo-section physo-section--azul physo-testimonios">
     <div class="physo-container">
       <div class="physo-section-header physo-reveal">
-        <h2 class="physo-testimonios__titulo">
+        <h4 class="physo-testimonios__titulo">
           Historias de personas que acompañamos en su mejora.
-        </h2>
+        </h4>
         <p>Cada proceso es diferente, pero todos comparten algo en común: la decisión de cuidar su cuerpo.</p>
       </div>
       <div class="physo-slider physo-reveal">
@@ -199,9 +218,7 @@ get_header();
       </form>
     </div>
   </section>
-  <section>
-    Esto es una prueba.
-  </section>
+
 
 </main>
 
