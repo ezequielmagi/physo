@@ -157,6 +157,59 @@ get_header();
     </div>
   </section>
 
+  <!-- ============ ESPACIO ============ -->
+  <section class="physo-section physo-espacio">
+
+    <!-- Círculos decorativos -->
+    <div class="physo-espacio__deco" aria-hidden="true">
+      <span class="physo-espacio__deco-ring physo-espacio__deco-ring--1"></span>
+      <span class="physo-espacio__deco-ring physo-espacio__deco-ring--2"></span>
+      <span class="physo-espacio__deco-ring physo-espacio__deco-ring--3"></span>
+    </div>
+
+    <div class="physo-container">
+
+      <!-- Cabecera: título + flechas -->
+      <div class="physo-espacio__header physo-reveal">
+        <h2 class="physo-espacio__heading">Un espacio pensado para el cuidado<br>y el movimiento consciente</h2>
+        <div class="physo-espacio__nav">
+          <button class="physo-espacio__btn" aria-label="Anterior">←</button>
+          <button class="physo-espacio__btn" aria-label="Siguiente">→</button>
+        </div>
+      </div>
+
+      <!-- Grilla de imágenes -->
+      <div class="physo-espacio__grid physo-reveal-group">
+        <div class="physo-espacio__img physo-img-zoom physo-reveal">
+          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/espacio-1.png' ); ?>"
+               alt="Sesión de movimiento adaptado"
+               onerror="this.parentElement.classList.add('physo-espacio__img--placeholder')">
+        </div>
+        <div class="physo-espacio__img physo-img-zoom physo-reveal">
+          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/espacio-2.png' ); ?>"
+               alt="Entrenamiento supervisado"
+               onerror="this.parentElement.classList.add('physo-espacio__img--placeholder')">
+        </div>
+        <div class="physo-espacio__img physo-img-zoom physo-reveal">
+          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/espacio-1.png ' ); ?>"
+               alt="Bienestar y calma"
+               onerror="this.parentElement.classList.add('physo-espacio__img--placeholder')">
+        </div>
+        <div class="physo-espacio__img physo-img-zoom physo-reveal">
+          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/espacio-2.png' ); ?>"
+               alt="Acompañamiento profesional"
+               onerror="this.parentElement.classList.add('physo-espacio__img--placeholder')">
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <p class="physo-espacio__caption physo-reveal">
+        Cada detalle del centro está diseñado para <strong>acompañar procesos de salud</strong> con <strong>seguridad, calma y supervisión profesional</strong>.
+      </p>
+
+    </div>
+  </section>
+
   <!-- ============ FAQ ============ -->
   <section class="physo-section physo-section--crema physo-faq-section">
     <div class="physo-container">
