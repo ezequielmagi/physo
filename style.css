@@ -703,17 +703,60 @@ h1, h2, h3, h4, h5 {
 /* ============================================================
    ESTADÍSTICAS
    ============================================================ */
-.physo-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--physo-space-md); text-align: center; }
-.physo-stat { text-align: center; }
+.physo-stats{
+  background-color: #eef0d3;
+}
+
+.physo-stats__grid .physo-stat{
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    border-radius: 20px;
+}
+
+.physo-stats__header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--physo-space-xl);
+  align-items: center;
+  margin-bottom: var(--physo-space-lg);
+}
+.physo-stats__heading {
+  font-size: var(--physo-size-3xl);
+  font-weight: 700;
+  color: var(--physo-azul);
+  line-height: 1.25;
+  margin: 0;
+  max-width: 30%;
+}
+.physo-stats__desc {
+  font-size: var(--physo-size-sm);
+  color: var(--physo-texto-claro);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 30%;
+}
+.physo-stats__desc strong { color: var(--physo-naranja); font-weight: 600; }
+.physo-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--physo-space-md); }
+.physo-stat { text-align: left; }
 .physo-stat__number {
   font-family: var(--physo-font-numeros);
   font-size: var(--physo-size-4xl);
   font-weight: 700;
-  color: var(--physo-naranja);
+  color: var(--physo-azul);
   display: block;
   line-height: 1;
   margin-bottom: .5rem;
 }
+
+.physo-counter[data-prefix="+"]::before {
+    color: orange;
+}
+
 .physo-stat__label { font-size: var(--physo-size-sm); color: var(--physo-texto-claro); line-height: 1.5; }
 
 /* ============================================================
@@ -767,6 +810,7 @@ h1, h2, h3, h4, h5 {
    ============================================================ */
 @media (max-width: 1024px) {
   .site-footer__grid    { grid-template-columns: 1fr 1fr; }
+  .physo-stats__header  { grid-template-columns: 1fr; gap: var(--physo-space-md); }
   .physo-stats__grid    { grid-template-columns: repeat(2, 1fr); }
   .physo-slider__slide {
     flex: 0 0 50%;

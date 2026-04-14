@@ -132,22 +132,26 @@ get_header();
   <!-- ============ ESTADÍSTICAS ============ -->
   <section class="physo-section physo-stats">
     <div class="physo-container">
+      <div class="physo-stats__header physo-reveal">
+        <h2 class="physo-stats__heading">Una comunidad construida alrededor del movimiento y la salud</h2>
+        <p class="physo-stats__desc"><strong>Physo</strong> es un centro especializado en acompañamiento integral para condiciones de salud y procesos de lesión, donde el movimiento, la nutrición y el bienestar emocional forman parte de un mismo enfoque.</p>
+      </div>
       <div class="physo-stats__grid physo-reveal-group">
-        <div class="physo-stat physo-reveal">
+        <div class="physo-stat physo-reveal .physo-stat__card">
           <span class="physo-stat__number physo-counter" data-target="3" data-prefix="+" data-suffix=" años">0</span>
-          <span class="physo-stat__label">Acompañando procesos de salud</span>
+          <span class="physo-stat__label">Acompañando procesos de salud.</span>
         </div>
-        <div class="physo-stat physo-reveal">
+        <div class="physo-stat physo-reveal .physo-stat__card">
           <span class="physo-stat__number physo-counter" data-target="70" data-prefix="+" data-suffix="">0</span>
-          <span class="physo-stat__label">Personas en su camino en entrenamiento supervisado</span>
+          <span class="physo-stat__label">Personas actualmente en entrenamiento supervisado.</span>
         </div>
-        <div class="physo-stat physo-reveal">
+        <div class="physo-stat physo-reveal .physo-stat__card">
           <span class="physo-stat__number physo-counter" data-target="40" data-prefix="+" data-suffix="">0</span>
-          <span class="physo-stat__label">Clínicas Pilates acordes con tu nivel</span>
+          <span class="physo-stat__label">Condiciones médicas abordadas a través de movimiento adaptado.</span>
         </div>
-        <div class="physo-stat physo-reveal">
+        <div class="physo-stat physo-reveal .physo-stat__card">
           <span class="physo-stat__number physo-counter" data-target="30" data-prefix="+" data-suffix="">0</span>
-          <span class="physo-stat__label">Talleres trabajados</span>
+          <span class="physo-stat__label">Tipos de lesiones trabajadas mediante fortalecimiento estructural.</span>
         </div>
       </div>
     </div>

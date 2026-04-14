@@ -72,17 +72,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function animateCounter(el) {
     const target    = parseInt( el.dataset.target, 10 );
+    const prefix    = el.dataset.prefix || '';
+    const suffix    = el.dataset.suffix || '';
     const duration  = 1800;
     const step      = 16;
     const increment = target / (duration / step);
     let current     = 0;
+
+    function render(value) {
+      if ( prefix ) {
+        el.innerHTML = '<span style="color:#f97316">' + prefix + '</span>' + value + suffix;
+      } else {
+        el.textContent = value + suffix;
+      }
+    }
+
     const timer = setInterval(() => {
       current += increment;
       if ( current >= target ) {
-        el.textContent = el.dataset.prefix + target + el.dataset.suffix;
+        render(target);
         clearInterval(timer);
       } else {
-        el.textContent = el.dataset.prefix + Math.floor(current) + el.dataset.suffix;
+        render(Math.floor(current));
       }
     }, step);
   }
