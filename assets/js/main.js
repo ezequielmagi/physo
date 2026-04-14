@@ -114,17 +114,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if ( ! track || slides.length < 2 ) return;
 
     let current = 0;
+    let slideWidth = slides[0].getBoundingClientRect().width;
+    const getVisibleSlides = () => window.matchMedia('(max-width: 768px)').matches ? 1 : 2;
+    const getMaxIndex = () => Math.max(0, slides.length - getVisibleSlides());
+
+    const updateDimensions = () => {
+      slideWidth = slides[0].getBoundingClientRect().width;
+    };
+
+    const updateVisibility = () => {
+      const visible = getVisibleSlides();
+      slides.forEach( (slide, i) => {
+        const isCentered = i >= current && i < current + visible;
+        slide.classList.toggle('is-centered', isCentered);
+      });
+    };
 
     function goTo(index) {
-      current = ( index + slides.length ) % slides.length;
-      track.style.transform = `translateX(-${current * 100}%)`;
-      slides.forEach( (s, i) => s.classList.toggle('is-active', i === current) );
+      current = Math.min(getMaxIndex(), Math.max(0, index));
+      track.style.transform = `translateX(-${current * slideWidth}px)`;
+      if (btnPrev) btnPrev.disabled = current === 0;
+      if (btnNext) btnNext.disabled = current === getMaxIndex();
+      updateVisibility();
     }
+
+    window.addEventListener('resize', () => {
+      updateDimensions();
+      goTo(current);
+    });
 
     if (btnPrev) btnPrev.addEventListener('click', () => goTo(current - 1));
     if (btnNext) btnNext.addEventListener('click', () => goTo(current + 1));
 
-    setInterval(() => goTo(current + 1), 5000);
+    setInterval(() => {
+      if (getMaxIndex() === 0) return;
+      const next = current === getMaxIndex() ? 0 : current + 1;
+      goTo(next);
+    }, 5000);
     goTo(0);
   });
 

@@ -42,6 +42,10 @@ get_header();
 
   <!-- ============ SELECTOR DE PERFIL ============ -->
 <section class="physo-section physo-section--crema physo-selector">
+  <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/cruz-ocho.webp' ); ?>"
+       alt=""
+       aria-hidden="true"
+       class="physo-selector__deco-cruz">
   <div class="physo-container">
 
     <div class="physo-section-header physo-reveal">
@@ -94,11 +98,11 @@ get_header();
   <!-- ============ TESTIMONIOS ============ -->
   <section class="physo-section physo-section--azul physo-testimonios">
     <div class="physo-container">
-      <div class="physo-section-header physo-reveal">
+      <div class="physo-section-header-testimonios physo-reveal">
         <h4 class="physo-testimonios__titulo">
           Historias de personas que acompañamos en su mejora.
         </h4>
-        <p>Cada proceso es diferente, pero todos comparten algo en común: la decisión de cuidar su cuerpo.</p>
+        <p>Cada proceso es diferente, pero todos comparten algo en común:<br>la decisión de volver a confiar en su cuerpo.</p>
       </div>
       <div class="physo-slider physo-reveal">
         <div class="physo-slider__track">
@@ -107,6 +111,7 @@ get_header();
             [ 'nombre' => 'Juliana Black',   'texto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat tortor non mi ullamcorper, vel pretium nunc fringilla.' ],
             [ 'nombre' => 'Carlos Méndez',   'texto' => 'Physo cambió completamente mi forma de entender el movimiento. El acompañamiento es profesional y muy humano.' ],
             [ 'nombre' => 'Philip Galligan', 'texto' => 'Después de meses con dolor, finalmente encontré un lugar donde se toman el tiempo de escucharme y guiarme.' ],
+            [ 'nombre' => 'Sofía Herrera',   'texto' => 'El equipo me ayudó a recuperar movilidad y confianza en mi cuerpo con ejercicios personalizados y seguimiento constante.' ],
           ];
           foreach ( $testimonios as $t ) : ?>
             <div class="physo-slider__slide">

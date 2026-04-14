@@ -501,8 +501,20 @@ h1, h2, h3, h4, h5 {
    SELECTOR DE PERFIL
    ============================================================ */
 .physo-selector {
-  overflow: visible;
+  position: relative;
+  overflow: hidden;
   padding-bottom: calc(var(--physo-space-xl) + 10px);
+}
+
+.physo-selector__deco-cruz {
+  position: absolute;
+  bottom: 0px;
+  right: -11%;
+  width: 280px;
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 .physo-selector__h2{
@@ -636,38 +648,57 @@ h1, h2, h3, h4, h5 {
 /* ============================================================
    TESTIMONIOS
    ============================================================ */
-.physo-testimonios__titulo { color: var(--physo-blanco) !important; font-size: var(--physo-size-3xl); }
+/*.physo-testimonios__titulo { color: var(--physo-blanco) !important; font-size: var(--physo-size-3xl); }*/
+.physo-section-header-testimonios{
+  margin-bottom: 3rem;
+}
+.physo-section-header-testimonios h4 { color: var(--physo-blanco) !important; font-size: 2rem; } 
+.physo-section-header-testimonios p { color: var(--physo-blanco) !important; font-size: 1.2rem; font-weight: 300; } 
 .physo-testimonio__card {
-  background: rgba(255,255,255,.08);
+  color: #000;
+  background: rgb(255, 255, 255);
   border: 1px solid rgba(255,255,255,.15);
   border-radius: var(--physo-radius-lg);
   padding: var(--physo-space-md);
-  max-width: 680px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .physo-testimonio__estrellas { color: var(--physo-naranja); font-size: var(--physo-size-lg); margin-bottom: 1rem; letter-spacing: .1em; }
-.physo-testimonio__texto { color: rgba(255,255,255,.9); font-size: var(--physo-size-lg); line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; }
-.physo-testimonio__nombre { color: var(--physo-naranja); font-weight: 600; font-size: var(--physo-size-sm); text-transform: uppercase; letter-spacing: .08em; }
+.physo-testimonio__texto { color: #333; font-size: var(--physo-size-lg); line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; flex-grow: 1; }
+.physo-testimonio__nombre { color: var(--physo-naranja); font-weight: 600; font-size: var(--physo-size-sm); text-transform: uppercase; letter-spacing: .08em; margin-top: 1rem; }
 
 /* ============================================================
    SLIDER
    ============================================================ */
-.physo-slider { position: relative; overflow: hidden; }
-.physo-slider__track { display: flex; transition: transform .5s cubic-bezier(.4,0,.2,1); }
-.physo-slider__slide { min-width: 100%; flex-shrink: 0; }
+.physo-slider { position: relative; overflow: visible; padding: 0 5rem; }
+.physo-slider__track { display: flex; transition: transform .5s cubic-bezier(.4,0,.2,1); will-change: transform; margin: 0; align-items: stretch; }
+.physo-slider__slide {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  display: flex;
+  transition: opacity .2s ease;
+  opacity: .28;
+}
+.physo-slider__slide.is-centered { opacity: 1; }
 .physo-slider__prev,
 .physo-slider__next {
   position: absolute; top: 50%; transform: translateY(-50%);
-  background: var(--physo-blanco); border: none; border-radius: 50%;
+  background: var(--physo-naranja); border: none; border-radius: 50%;
   width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; box-shadow: var(--physo-shadow); font-size: 1.25rem;
-  transition: background .2s, transform .2s; z-index: 2;
+  transition: transform .2s, opacity .2s; z-index: 2;
+  color: var(--physo-blanco);
 }
-.physo-slider__prev { left: 1rem; }
-.physo-slider__next { right: 1rem; }
+.physo-slider__prev { left: -22px; }
+.physo-slider__next { right: -22px; }
 .physo-slider__prev:hover,
-.physo-slider__next:hover { background: var(--physo-naranja); color: var(--physo-blanco); transform: translateY(-50%) scale(1.1); }
+.physo-slider__next:hover { transform: translateY(-50%) scale(1.05); opacity: .95; }
 
 /* ============================================================
    ESTADÍSTICAS
@@ -737,6 +768,10 @@ h1, h2, h3, h4, h5 {
 @media (max-width: 1024px) {
   .site-footer__grid    { grid-template-columns: 1fr 1fr; }
   .physo-stats__grid    { grid-template-columns: repeat(2, 1fr); }
+  .physo-slider__slide {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -763,6 +798,11 @@ h1, h2, h3, h4, h5 {
   .physo-selector__grid  { grid-template-columns: 1fr; }
   .physo-stats__grid     { grid-template-columns: repeat(2, 1fr); }
   .physo-form__grid      { grid-template-columns: 1fr; }
+  .physo-slider__slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
+  }
 
   .site-footer__grid     { grid-template-columns: 1fr; gap: var(--physo-space-md); }
   .site-footer__bottom   { flex-direction: column; gap: .5rem; text-align: center; }
