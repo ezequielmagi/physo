@@ -649,6 +649,7 @@ h1, h2, h3, h4, h5 {
    TESTIMONIOS
    ============================================================ */
 /*.physo-testimonios__titulo { color: var(--physo-blanco) !important; font-size: var(--physo-size-3xl); }*/
+.physo-testimonios { overflow-x: hidden; }
 .physo-section-header-testimonios{
   margin-bottom: 3rem;
 }
