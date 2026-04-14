@@ -758,7 +758,7 @@ h1, h2, h3, h4, h5 {
     color: orange;
 }
 
-.physo-stat__label { font-size: var(--physo-size-sm); color: var(--physo-texto-claro); line-height: 1.5; }
+.physo-stat__label { font-size: 14px; font-weight: 400; color: var(--physo-texto-claro); line-height: 1.5; text-align: center;}
 
 /* ============================================================
    FAQ
