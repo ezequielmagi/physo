@@ -881,24 +881,80 @@ h1, h2, h3, h4, h5 {
 /* ============================================================
    FAQ
    ============================================================ */
-.physo-faq { max-width: 760px; margin: 0 auto; }
-.physo-faq__answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
-.physo-faq__answer p { padding: 1rem 0 1.5rem; color: var(--physo-texto-claro); line-height: 1.8; }
+.physo-faq {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.physo-faq__item {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--physo-borde);
+  overflow: hidden;
+  transition: border-color .2s;
+}
 .physo-faq__question {
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--physo-borde);
-  background: none; border-top: none; border-left: none; border-right: none;
-  width: 100%; text-align: left;
-  font-size: var(--physo-size-lg); font-weight: 500; color: var(--physo-texto);
+  gap: .875rem;
+  padding: 1.25rem 1.25rem;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: var(--physo-size-base);
+  font-weight: 600;
+  color: var(--physo-texto);
   transition: color .2s;
 }
-.physo-faq__question:hover { color: var(--physo-azul); }
-.physo-faq__icon { font-size: 1.5rem; transition: transform .3s ease; color: var(--physo-naranja); flex-shrink: 0; }
-.physo-faq__item.is-open .physo-faq__icon { transform: rotate(45deg); }
+.physo-faq__item-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--physo-azul);
+  transition: color .2s;
+}
+.physo-faq__item-text { flex: 1; }
+.physo-faq__toggle {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--physo-naranja);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  transition: background .2s;
+}
+.physo-faq__plus  { display: block; }
+.physo-faq__minus { display: none; }
+.physo-faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease;
+}
+.physo-faq__answer p {
+  padding: .25rem 1.25rem 1.25rem;
+  color: var(--physo-texto-claro);
+  line-height: 1.8;
+  font-size: var(--physo-size-sm);
+}
+
+/* Estado abierto */
+.physo-faq__item.is-open {
+  border-color: var(--physo-naranja);
+  background: #fff5ee;
+}
+.physo-faq__item.is-open .physo-faq__question { color: var(--physo-naranja); }
+.physo-faq__item.is-open .physo-faq__item-icon { color: var(--physo-naranja); }
+.physo-faq__item.is-open .physo-faq__toggle { background: var(--physo-naranja); }
+.physo-faq__item.is-open .physo-faq__plus  { display: none; }
+.physo-faq__item.is-open .physo-faq__minus { display: block; }
+
+/* Mobile */
+@media (max-width: 640px) {
+  .physo-faq { grid-template-columns: 1fr; }
+}
 
 /* ============================================================
    FORMULARIO

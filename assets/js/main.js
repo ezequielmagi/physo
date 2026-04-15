@@ -108,10 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.physo-faq__item.is-open').forEach( open => {
         open.classList.remove('is-open');
         open.querySelector('.physo-faq__answer').style.maxHeight = null;
+        open.querySelector('.physo-faq__question').setAttribute('aria-expanded', 'false');
       });
       if ( ! isOpen ) {
         item.classList.add('is-open');
         answer.style.maxHeight = answer.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
       }
     });
   });

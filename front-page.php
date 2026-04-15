@@ -214,22 +214,52 @@ get_header();
   <section class="physo-section physo-section--crema physo-faq-section">
     <div class="physo-container">
       <div class="physo-section-header physo-reveal">
-        <p class="physo-eyebrow">Preguntas frecuentes</p>
-        <h2>Respondemos algunas de las preguntas más habituales</h2>
+        <h2>Preguntas frecuentes</h2>
+        <p>Respondemos algunas de las preguntas más habituales</p>
       </div>
       <div class="physo-faq physo-reveal">
         <?php
         $faqs = [
-          [ 'q' => '¿Cómo es una sesión inicial?',       'a' => 'La primera sesión es una evaluación completa donde analizamos tu historial, objetivos y condición actual.' ],
-          [ 'q' => '¿Necesito tener experiencia previa?', 'a' => 'No. Trabajamos con personas de todos los niveles, desde quienes empiezan desde cero hasta deportistas.' ],
-          [ 'q' => '¿Con qué frecuencia debo asistir?',   'a' => 'Depende de tu objetivo. Generalmente recomendamos entre 2 y 3 veces por semana.' ],
-          [ 'q' => '¿Trabajan con derivaciones médicas?', 'a' => 'Sí. Trabajamos en conjunto con médicos, traumatólogos y kinesiólogos para complementar tu tratamiento.' ],
+          [
+            'q'    => '¿Cómo es una sesión inicial?',
+            'a'    => 'La primera sesión es una evaluación completa donde analizamos tu historial, objetivos y condición actual.',
+            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a16,16,0,1,1,16,16A16,16,0,0,1,112,84Z"/></svg>',
+          ],
+          [
+            'q'    => '¿Necesito tener experiencia previa?',
+            'a'    => 'No. Trabajamos con personas de todos los niveles, desde quienes empiezan desde cero hasta deportistas.',
+            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-48-56H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0,32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"/></svg>',
+          ],
+          [
+            'q'    => '¿Con qué frecuencia debo asistir?',
+            'a'    => 'Depende de tu objetivo. Generalmente recomendamos entre 2 y 3 veces por semana.',
+            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48ZM32,64H224V96H32ZM32,192V112H224v80Z"/></svg>',
+          ],
+          [
+            'q'    => '¿Trabajan con derivaciones médicas?',
+            'a'    => 'Sí. Trabajamos en conjunto con médicos, traumatólogos y kinesiólogos para complementar tu tratamiento.',
+            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M230.93,220a8,8,0,0,1-6.93,4H32a8,8,0,0,1-6.92-12l16-27.71A92.06,92.06,0,0,1,36,140V88a92,92,0,0,1,184,0v52a92.06,92.06,0,0,1-5.08,44.29l16,27.71A8,8,0,0,1,230.93,220ZM196,88a68,68,0,0,0-136,0v52a68,68,0,0,0,136,0Zm-36,52a8,8,0,0,0-8-8H136V120a8,8,0,0,0-16,0v12H108a8,8,0,0,0,0,16h12v12a8,8,0,0,0,16,0V148h12A8,8,0,0,0,160,140Z"/></svg>',
+          ],
+          [
+            'q'    => '¿Qué diferencia a Physo de otros centros?',
+            'a'    => 'Nuestro enfoque combina entrenamiento funcional, recuperación y bienestar en un mismo espacio, con profesionales especializados.',
+            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M230.93,220a8,8,0,0,1-6.93,4H32a8,8,0,0,1-6.92-12l16-27.71A92.06,92.06,0,0,1,36,140V88a92,92,0,0,1,184,0v52a92.06,92.06,0,0,1-5.08,44.29l16,27.71A8,8,0,0,1,230.93,220ZM196,88a68,68,0,0,0-136,0v52a68,68,0,0,0,136,0Z"/></svg>',
+          ],
+          [
+            'q'    => '¿Tienen opciones online?',
+            'a'    => 'Sí, ofrecemos sesiones de seguimiento y asesoramiento de forma remota para mayor comodidad.',
+            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8H96a8,8,0,0,0,8-8V160h48v56a8,8,0,0,0,8,8h56a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H168V152a8,8,0,0,0-8-8H96a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"/></svg>',
+          ],
         ];
         foreach ( $faqs as $faq ) : ?>
           <div class="physo-faq__item">
-            <button class="physo-faq__question">
-              <?php echo esc_html( $faq['q'] ); ?>
-              <span class="physo-faq__icon">+</span>
+            <button type="button" class="physo-faq__question" aria-expanded="false">
+              <span class="physo-faq__item-icon"><?php echo $faq['icon']; ?></span>
+              <span class="physo-faq__item-text"><?php echo esc_html( $faq['q'] ); ?></span>
+              <span class="physo-faq__toggle">
+                <svg class="physo-faq__plus"  xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg>
+                <svg class="physo-faq__minus" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></svg>
+              </span>
             </button>
             <div class="physo-faq__answer">
               <p><?php echo esc_html( $faq['a'] ); ?></p>
