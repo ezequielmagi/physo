@@ -641,8 +641,11 @@ h1, h2, h3, h4, h5 {
 }
 
 @media (max-width: 768px) {
-  .physo-selector__grid { grid-template-columns: 1fr; }
-  .physo-selector__deco { display: none; }
+  .physo-selector__grid      { grid-template-columns: 1fr; }
+  .physo-selector__deco      { display: none; }
+  .physo-selector__deco-cruz { display: none; }
+  .physo-selector__h2        { font-size: 1.625rem; }
+  .physo-selector__p         { font-size: 1rem; }
 }
 
 /* ============================================================
@@ -873,6 +876,8 @@ h1, h2, h3, h4, h5 {
   .physo-espacio__grid    { grid-template-columns: repeat(2, 1fr); }
   .physo-espacio__heading { font-size: var(--physo-size-2xl); }
   .physo-espacio__deco    { display: none; }
+  .physo-espacio__header  { flex-direction: column; gap: .75rem; }
+  .physo-espacio__caption { text-align: left; }
 }
 @media (max-width: 480px) {
   .physo-espacio__grid { grid-template-columns: 1fr 1fr; gap: .5rem; }
@@ -986,7 +991,9 @@ h1, h2, h3, h4, h5 {
    ============================================================ */
 @media (max-width: 1024px) {
   .site-footer__grid    { grid-template-columns: 1fr 1fr; }
-  .physo-stats__header  { grid-template-columns: 1fr; gap: var(--physo-space-md); }
+  .physo-stats__header  { flex-direction: column; gap: var(--physo-space-md); }
+  .physo-stats__heading { max-width: 100%; }
+  .physo-stats__desc    { max-width: 100%; }
   .physo-stats__grid    { grid-template-columns: repeat(2, 1fr); }
   .physo-slider__slide {
     flex: 0 0 50%;
@@ -997,6 +1004,9 @@ h1, h2, h3, h4, h5 {
 @media (max-width: 768px) {
   :root { --physo-space-xl: 3rem; --physo-space-lg: 2rem; }
 
+  .physo-container { padding-inline: 1.25rem; }
+
+  /* Nav */
   .nav-primary { display: none; }
   .nav-primary.is-open {
     display: flex; flex-direction: column;
@@ -1011,19 +1021,32 @@ h1, h2, h3, h4, h5 {
   .nav-primary.is-open .menu-item > a { padding: .75rem 1rem; }
   .nav-toggle { display: block; }
 
-  .physo-hero            { min-height: 500px; }
-  .physo-hero__title     { font-size: 2rem; }
+  /* Hero */
+  .physo-hero            { min-height: 420px; }
+  .physo-hero__title     { font-size: 1.75rem; }
+  .physo-hero__text      { font-size: 1rem; margin-bottom: 1.75rem; }
   .physo-hero__content   { max-width: 100%; }
+  .physo-btn--hero       { width: 100%; justify-content: center; }
 
-  .physo-selector__grid  { grid-template-columns: 1fr; }
-  .physo-stats__grid     { grid-template-columns: repeat(2, 1fr); }
-  .physo-form__grid      { grid-template-columns: 1fr; }
+  /* Testimonios */
+  .physo-section-header-testimonios h4 { font-size: 1.5rem; }
+  .physo-section-header-testimonios p  { font-size: 1rem; }
+  .physo-slider          { padding: 0 2.5rem; }
   .physo-slider__slide {
     flex: 0 0 100%;
     max-width: 100%;
     padding: 0;
   }
 
+  /* Stats */
+  .physo-stats__grid     { grid-template-columns: repeat(2, 1fr); }
+  .physo-stats__heading  { font-size: var(--physo-size-2xl); }
+
+  /* Grids */
+  .physo-selector__grid  { grid-template-columns: 1fr; }
+  .physo-form__grid      { grid-template-columns: 1fr; }
+
+  /* Footer */
   .site-footer__grid     { grid-template-columns: 1fr; gap: var(--physo-space-md); }
   .site-footer__bottom   { flex-direction: column; gap: .5rem; text-align: center; }
 }
