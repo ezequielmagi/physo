@@ -221,33 +221,33 @@ get_header();
         <?php
         $faqs = [
           [
-            'q'    => '¿Cómo es una sesión inicial?',
-            'a'    => 'La primera sesión es una evaluación completa donde analizamos tu historial, objetivos y condición actual.',
+            'q'    => '¿Qué es Physo?',
+            'a'    => 'Physo es un centro de acompañamiento integral en Lima orientado a mejorar la funcionalidad del cuerpo, el movimiento, los hábitos y el bienestar general. Su enfoque combina ejercicio supervisado, nutrición clínica e integral y regulación del sistema nervioso.',
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a16,16,0,1,1,16,16A16,16,0,0,1,112,84Z"/></svg>',
           ],
           [
-            'q'    => '¿Necesito tener experiencia previa?',
-            'a'    => 'No. Trabajamos con personas de todos los niveles, desde quienes empiezan desde cero hasta deportistas.',
+            'q'    => '¿Qué servicios ofrece Physo?',
+            'a'    => 'Physo ofrece tres servicios principales: Movimiento Adaptado para personas con condiciones médicas, Movimiento Evolutivo para lesiones, alteraciones posturales y fortalecimiento estructural, y Yoga Nidra como práctica guiada orientada al descanso, la recuperación y la regulación del sistema nervioso.',
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-48-56H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0,32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"/></svg>',
           ],
           [
-            'q'    => '¿Con qué frecuencia debo asistir?',
-            'a'    => 'Depende de tu objetivo. Generalmente recomendamos entre 2 y 3 veces por semana.',
+            'q'    => '¿Para quién está pensado Physo?',
+            'a'    => 'Physo está pensado para quienes necesitan un enfoque más personalizado que el de un gimnasio tradicional: personas con condiciones médicas, lesiones, molestias recurrentes, alteraciones posturales o quienes buscan fortalecer su cuerpo con mayor seguridad y criterio.',
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48ZM32,64H224V96H32ZM32,192V112H224v80Z"/></svg>',
           ],
           [
-            'q'    => '¿Trabajan con derivaciones médicas?',
-            'a'    => 'Sí. Trabajamos en conjunto con médicos, traumatólogos y kinesiólogos para complementar tu tratamiento.',
+            'q'    => '¿Cómo comienza el proceso en Physo?',
+            'a'    => 'El proceso comienza con una evaluación funcional y una sesión de prueba gratuita. En ese primer encuentro se observan variables como movilidad, estabilidad, fuerza funcional, postura, dolor, fatiga y respuesta al movimiento, para orientar el trabajo de forma más precisa.',
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M230.93,220a8,8,0,0,1-6.93,4H32a8,8,0,0,1-6.92-12l16-27.71A92.06,92.06,0,0,1,36,140V88a92,92,0,0,1,184,0v52a92.06,92.06,0,0,1-5.08,44.29l16,27.71A8,8,0,0,1,230.93,220ZM196,88a68,68,0,0,0-136,0v52a68,68,0,0,0,136,0Zm-36,52a8,8,0,0,0-8-8H136V120a8,8,0,0,0-16,0v12H108a8,8,0,0,0,0,16h12v12a8,8,0,0,0,16,0V148h12A8,8,0,0,0,160,140Z"/></svg>',
           ],
           [
-            'q'    => '¿Qué diferencia a Physo de otros centros?',
-            'a'    => 'Nuestro enfoque combina entrenamiento funcional, recuperación y bienestar en un mismo espacio, con profesionales especializados.',
+            'q'    => '¿Es seguro hacer ejercicio en Physo si tengo una condición médica o una lesión?',
+            'a'    => 'Sí. El trabajo en Physo se adapta a la situación de cada caso, con supervisión constante, progresión gradual y ajustes según la respuesta del cuerpo. En algunos casos específicos también puede solicitarse autorización médica para empezar.',
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M230.93,220a8,8,0,0,1-6.93,4H32a8,8,0,0,1-6.92-12l16-27.71A92.06,92.06,0,0,1,36,140V88a92,92,0,0,1,184,0v52a92.06,92.06,0,0,1-5.08,44.29l16,27.71A8,8,0,0,1,230.93,220ZM196,88a68,68,0,0,0-136,0v52a68,68,0,0,0,136,0Z"/></svg>',
           ],
           [
-            'q'    => '¿Tienen opciones online?',
-            'a'    => 'Sí, ofrecemos sesiones de seguimiento y asesoramiento de forma remota para mayor comodidad.',
+            'q'    => '¿Necesito experiencia previa para empezar?',
+            'a'    => 'No. Muchas personas llegan sin experiencia previa en ejercicio o después de haber pasado por dolor, inactividad, cirugía o rehabilitación. El trabajo comienza desde el punto en el que se encuentra cada cuerpo y progresa de forma guiada.',
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8H96a8,8,0,0,0,8-8V160h48v56a8,8,0,0,0,8,8h56a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H168V152a8,8,0,0,0-8-8H96a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"/></svg>',
           ],
         ];
