@@ -885,6 +885,7 @@ h1, h2, h3, h4, h5 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  align-items: start;
 }
 .physo-faq__item {
   background: #fff;
