@@ -1032,11 +1032,13 @@ h1, h2, h3, h4, h5 {
   .physo-section-header-testimonios h4 { font-size: 1.5rem; }
   .physo-section-header-testimonios p  { font-size: 1rem; }
   .physo-slider          { padding: 0 2.5rem; }
+  .physo-slider__track   { align-items: flex-start; }
   .physo-slider__slide {
     flex: 0 0 100%;
     max-width: 100%;
-    padding: 0;
+    padding: 0 .5rem;
   }
+  .physo-testimonio__card { height: auto; }
 
   /* Stats */
   .physo-stats__grid     { grid-template-columns: repeat(2, 1fr); }
