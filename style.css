@@ -312,7 +312,7 @@ h1, h2, h3, h4, h5 {
   color: var(--physo-blanco);
   margin-bottom: .75rem;
 }
-.site-footer__desc { font-size: var(--physo-size-2xl); opacity: .8; line-height: 1.5; margin-bottom: var(--physo-space-sm); font-weight: 700; position: relative; display: inline-block;}
+.site-footer__desc { font-size: 34px; opacity: .8; line-height: 1.5; margin-bottom: var(--physo-space-sm); font-weight: 700; position: relative; display: inline-block;}
 
 .site-footer__desc-container{
   display: flex;
