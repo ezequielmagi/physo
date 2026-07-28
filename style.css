@@ -66,6 +66,8 @@ Text Domain: physo
   /* Naranja del CTA del hero, más saturado que --physo-naranja. */
   --physo-naranja-vivo:  #E06D06;
   --physo-naranja-vivo-hover: #C45F05;
+  /* Gris muy claro y frío para secciones que no llevan el crema. */
+  --physo-gris-claro:    #F7F8FA;
   --physo-blanco:        #FFFFFF;
   --physo-texto:         #2C2C2C;
   --physo-texto-claro:   #666666;
@@ -136,6 +138,7 @@ h1, h2, h3, h4, h5 {
 }
 .physo-section { padding-block: var(--physo-space-xl); }
 .physo-section--crema { background: var(--physo-crema); }
+.physo-section--claro { background: var(--physo-gris-claro); }
 .physo-section--azul  { background: var(--physo-azul); color: var(--physo-blanco); }
 
 /* ============================================================
@@ -182,6 +185,22 @@ h1, h2, h3, h4, h5 {
   border-color: var(--physo-naranja);
 }
 .physo-btn--outline:hover { background: var(--physo-naranja); color: var(--physo-blanco); }
+
+/* Naranja fuerte, el mismo del CTA del hero. */
+.physo-btn--naranja {
+  background: var(--physo-naranja-vivo);
+  color: var(--physo-blanco);
+  font-weight: 600;
+  gap: .6rem;
+}
+.physo-btn--naranja:hover {
+  background: var(--physo-naranja-vivo-hover);
+  color: var(--physo-blanco);
+  transform: translateY(-1px);
+  box-shadow: var(--physo-shadow);
+}
+.physo-btn__flecha { transition: transform .2s ease; }
+.physo-btn--naranja:hover .physo-btn__flecha { transform: translateX(3px); }
 
 .physo-btn--hero {
   background: var(--physo-naranja-vivo);
@@ -599,7 +618,8 @@ h1, h2, h3, h4, h5 {
   bottom: 0px;
   right: -11%;
   width: 280px;
-  opacity: 1;
+  /* Sobre el fondo claro la cruz resaltaba demasiado; queda como textura. */
+  opacity: .35;
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -657,7 +677,13 @@ h1, h2, h3, h4, h5 {
 
 .physo-selector__card-body {
   padding: 1.75rem;
+  /* Empuja el botón al fondo para que las dos cards lo alineen
+     aunque un título ocupe más líneas que el otro. */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
+.physo-selector__card-body .physo-btn { margin-top: auto; align-self: flex-start; }
 
 .physo-selector__card-body h3 {
   font-family: var(--physo-font-titulo);
@@ -675,25 +701,14 @@ h1, h2, h3, h4, h5 {
   line-height: 1.7;
 }
 
-/* Card — sombra naranja base */
 .physo-selector__card {
   position: relative;
   border-radius: var(--physo-radius-lg);
   overflow: visible;
   background: var(--physo-blanco);
   box-shadow: var(--physo-shadow);
-}
-
-.physo-selector__card-shadow {
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  right: 0;
-  height: 16px;
-  background: var(--physo-naranja);
-  border-radius: 0 0 var(--physo-radius-lg) var(--physo-radius-lg);
-  z-index: -1;
-  opacity: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Asegurar que la imagen no se salga del borde redondeado */
@@ -701,6 +716,101 @@ h1, h2, h3, h4, h5 {
   border-radius: var(--physo-radius-lg) var(--physo-radius-lg) 0 0;
   overflow: hidden;
 }
+
+/* ── Disparador de video sobre el poster ────────────────── */
+.physo-video-trigger {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--physo-borde);
+  cursor: pointer;
+  overflow: hidden;
+}
+.physo-video-trigger img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.physo-video-trigger:hover img,
+.physo-video-trigger:focus-visible img { transform: scale(1.05); }
+
+.physo-video-trigger__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--physo-blanco);
+  color: var(--physo-azul);
+  box-shadow: 0 4px 14px rgba(0,0,0,.22);
+  transition: transform .2s ease, background .2s ease;
+}
+.physo-video-trigger__play svg { width: 15px; height: 17px; margin-left: 2px; }
+.physo-video-trigger:hover .physo-video-trigger__play {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.physo-video-trigger:focus-visible {
+  outline: 3px solid var(--physo-naranja-vivo);
+  outline-offset: -3px;
+}
+
+/* ── Reproductor flotante ───────────────────────────────── */
+.physo-video-modal {
+  width: min(920px, 92vw);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  /* Centrado explícito: el diálogo vive en el top layer y no hereda
+     el centrado de ningún contenedor. */
+  margin: auto;
+  position: fixed;
+  inset: 0;
+  height: fit-content;
+}
+.physo-video-modal::backdrop {
+  background: rgba(10,16,38,.82);
+}
+.physo-video-modal__video {
+  width: 100%;
+  max-height: 80vh;
+  display: block;
+  border-radius: var(--physo-radius-lg);
+  background: #000;
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+}
+/* Dentro del cuadro y no encima: fuera se salía de pantalla cuando el
+   diálogo quedaba pegado al borde superior. */
+.physo-video-modal__close {
+  position: absolute;
+  top: .625rem;
+  right: .625rem;
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(12,16,32,.62);
+  color: var(--physo-blanco);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+.physo-video-modal__close:hover { background: rgba(12,16,32,.85); }
 
 
 

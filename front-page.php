@@ -43,7 +43,7 @@ get_header();
   </section>
 
   <!-- ============ SELECTOR DE PERFIL ============ -->
-<section class="physo-section physo-section--crema physo-selector">
+<section class="physo-section physo-section--claro physo-selector">
   <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/cruz-ocho.webp' ); ?>"
        alt=""
        aria-hidden="true"
@@ -52,50 +52,61 @@ get_header();
 
     <div class="physo-section-header physo-reveal">
       <h2 class="physo-selector__h2">Queremos entender tu punto de partida</h2>
-      <p class="physo-selector__p">Cada proceso de salud es diferente.<br>Elige la situación que mejor represente lo que estás viviendo.</p>
+      <p class="physo-selector__p">Cada cuerpo vive procesos distintos.<br>Elige la situación que mejor represente lo que estás viviendo hoy.</p>
     </div>
 
     <div class="physo-selector__grid physo-reveal-group">
 
-      <div class="physo-selector__card physo-reveal">
-        <div class="physo-selector__card-image physo-img-zoom">
-          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/selector-medica.png' ); ?>"
-               alt="Lesión o estructura corporal"
-               onerror="this.parentElement.classList.add('physo-selector__img-placeholder')">
-        </div>
-        <div class="physo-selector__card-body">
-          <h3>Tengo una condición médica</h3>
-          <p>Querés moverte con seguridad y entender qué tipo de ejercicio es adecuado para mi estado de salud.</p>
-          <a href="#" class="physo-btn physo-btn--secondary">
-            Conocé movimiento adaptado →
-          </a>
-        </div>
-        <!-- Sombra naranja decorativa -->
-        <div class="physo-selector__card-shadow"></div>
-      </div>
+      <?php
+      $physo_selector_cards = [
+        [
+          'titulo'  => 'Tengo una condición médica',
+          'texto'   => 'Quiero moverme con más seguridad, recuperar energía y entender qué tipo de ejercicio es adecuado para mi condición de salud.',
+          'boton'   => 'Conoce MOVIMIENTO ADAPTADO',
+          'enlace'  => '/movimiento-adaptado',
+          'video'   => 'movimiento-adaptado.mp4',
+          'poster'  => 'poster-movimiento-adaptado.webp',
+        ],
+        [
+          'titulo'  => 'Tengo una lesión, alteración postural o quiero fortalecerme',
+          'texto'   => 'Quiero recuperar confianza en mi movimiento, mejorar mi estabilidad y volver a hacer lo que disfruto sin miedo a lesionarme.',
+          'boton'   => 'Conoce MOVIMIENTO EVOLUTIVO',
+          'enlace'  => '/movimiento-evolutivo',
+          'video'   => 'movimiento-evolutivo.mp4',
+          'poster'  => 'poster-movimiento-evolutivo.webp',
+        ],
+      ];
 
-      <div class="physo-card physo-selector__card physo-reveal">
-        <div class="physo-selector__card-image physo-img-zoom">
-          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/selector-lesion.png' ); ?>"
-               alt="Lesión o estructura corporal"
-               onerror="this.parentElement.classList.add('physo-selector__img-placeholder')">
+      foreach ( $physo_selector_cards as $card ) : ?>
+        <div class="physo-selector__card physo-reveal">
+          <div class="physo-selector__card-image">
+            <button type="button"
+                    class="physo-video-trigger"
+                    data-video="<?php echo esc_url( PHYSO_URI . '/assets/videos/' . $card['video'] ); ?>"
+                    aria-label="Reproducir el video: <?php echo esc_attr( $card['titulo'] ); ?>">
+              <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/' . $card['poster'] ); ?>"
+                   alt=""
+                   aria-hidden="true"
+                   loading="lazy"
+                   onerror="this.remove()">
+              <span class="physo-video-trigger__play" aria-hidden="true">
+                <svg viewBox="0 0 16 18" focusable="false"><path d="M16 9 0 18V0z" fill="currentColor"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="physo-selector__card-body">
+            <h3><?php echo esc_html( $card['titulo'] ); ?></h3>
+            <p><?php echo esc_html( $card['texto'] ); ?></p>
+            <a href="<?php echo esc_url( home_url( $card['enlace'] ) ); ?>" class="physo-btn physo-btn--naranja">
+              <?php echo esc_html( $card['boton'] ); ?>
+              <span class="physo-btn__flecha" aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
-        <div class="physo-selector__card-body">
-          <h3>Tengo una lesión o quiero mejorar mi estructura corporal</h3>
-          <p>Buscás recuperarte, sentirte mejor y desarrollar un cuerpo más sólido y fuerte.</p>
-          <a href="#" class="physo-btn physo-btn--secondary">
-            Conocé cómo trabajamos →
-          </a>
-        </div>
-        <!-- Sombra naranja decorativa -->
-        <div class="physo-selector__card-shadow"></div>
-      </div>
-      </div>
+      <?php endforeach; ?>
 
     </div>
   </div>
-
-
 </section>
   <!-- ============ TESTIMONIOS ============ -->
   <section class="physo-section physo-section--azul physo-testimonios">

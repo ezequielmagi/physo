@@ -51,6 +51,13 @@
 </footer>
 
 </div><!-- .site -->
+
+<!-- Reproductor flotante. Lo abre cualquier .physo-video-trigger de la página. -->
+<dialog class="physo-video-modal" id="physo-video-modal" aria-label="Reproductor de video">
+  <button type="button" class="physo-video-modal__close" aria-label="Cerrar video">&#10005;</button>
+  <video class="physo-video-modal__video" controls playsinline preload="none"></video>
+</dialog>
+
 <?php wp_footer(); ?>
 </body>
 </html>

@@ -42,6 +42,51 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', (e) => e.preventDefault());
     });
 
+  // ─── Reproductor de video flotante ────────────────────────
+  // Se usa <dialog> a propósito: el navegador ya resuelve el cierre con
+  // Escape, el atrapado del foco y la devolución del foco al cerrar.
+  const videoModal = document.getElementById('physo-video-modal');
+  const videoTriggers = document.querySelectorAll('.physo-video-trigger');
+
+  if ( videoModal && videoTriggers.length ) {
+    const video = videoModal.querySelector('.physo-video-modal__video');
+    const btnCerrar = videoModal.querySelector('.physo-video-modal__close');
+
+    videoTriggers.forEach( trigger => {
+      trigger.addEventListener('click', () => {
+        const src = trigger.dataset.video;
+        if ( ! src ) return;
+        video.src = src;
+        // El load() es necesario: con preload="none" asignar src no
+        // descarga nada, y si el navegador bloquea la reproducción
+        // automática el play() se rechaza sin haber cargado. Sin esto
+        // el reproductor puede quedar vacío.
+        video.load();
+        videoModal.showModal();
+        // Puede rechazar igual; en ese caso quedan los controles nativos
+        // sobre el primer frame ya cargado.
+        video.play().catch( () => {} );
+      });
+    });
+
+    if ( btnCerrar ) {
+      btnCerrar.addEventListener('click', () => videoModal.close());
+    }
+
+    // Click en el fondo, fuera del cuadro del video.
+    videoModal.addEventListener('click', (e) => {
+      if ( e.target === videoModal ) videoModal.close();
+    });
+
+    // Cubre también el cierre con Escape, que dispara 'close' igual.
+    // Sin liberar el src el video sigue descargándose de fondo.
+    videoModal.addEventListener('close', () => {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    });
+  }
+
   // ─── Header scroll ────────────────────────────────────────
   const header = document.getElementById('site-header');
   if ( header ) {
