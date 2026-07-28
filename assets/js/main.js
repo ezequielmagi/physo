@@ -34,6 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ─── Ítems de menú que sólo agrupan ───────────────────────
+  // "Servicios" no es una página: existe para desplegar el submenú y
+  // apunta a "#". Sin esto, al hacer click la página salta al inicio.
+  document.querySelectorAll('.nav-primary .menu-item-has-children > a[href$="#"]')
+    .forEach( link => {
+      link.addEventListener('click', (e) => e.preventDefault());
+    });
+
   // ─── Header scroll ────────────────────────────────────────
   const header = document.getElementById('site-header');
   if ( header ) {
