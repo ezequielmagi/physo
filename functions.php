@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-define( 'PHYSO_VERSION', '1.4.0' );
+define( 'PHYSO_VERSION', '1.5.0' );
 define( 'PHYSO_DIR',     get_template_directory() );
 define( 'PHYSO_URI',     get_template_directory_uri() );
 
