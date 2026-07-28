@@ -434,10 +434,6 @@ get_header();
   </section>
 
   <!-- ============ UBICACIÓN ============ -->
-  <?php
-  // Misma dirección que figura en el footer (footer.php).
-  $physo_direccion = 'Jirón Cruz del Sur 140, Santiago de Surco, Lima, Perú';
-  ?>
   <section class="physo-section physo-ubicacion" id="ubicacion">
     <div class="physo-container">
       <div class="physo-ubicacion__grid physo-reveal">
@@ -464,7 +460,7 @@ get_header();
 
         <div class="physo-ubicacion__mapa">
           <iframe
-            src="https://maps.google.com/maps?q=<?php echo rawurlencode( $physo_direccion ); ?>&amp;z=16&amp;hl=es&amp;output=embed"
+            src="https://maps.google.com/maps?q=<?php echo rawurlencode( PHYSO_DIRECCION ); ?>&amp;z=16&amp;hl=es&amp;output=embed"
             title="Mapa con la ubicación de Physo"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
