@@ -58,6 +58,14 @@ Text Domain: physo
   --physo-crema:         #F5F0E8;
   --physo-naranja:       #E8845A;
   --physo-naranja-hover: #D46A3A;
+
+  /* Azul intenso del rediseño: header y overlay del hero.
+     Aproximado del mockup del cliente; reemplazar por el hex de marca exacto. */
+  --physo-azul-header:   #27408B;
+  --physo-azul-hero:     #1E3577;
+  /* Naranja del CTA del hero, más saturado que --physo-naranja. */
+  --physo-naranja-vivo:  #E06D06;
+  --physo-naranja-vivo-hover: #C45F05;
   --physo-blanco:        #FFFFFF;
   --physo-texto:         #2C2C2C;
   --physo-texto-claro:   #666666;
@@ -176,20 +184,39 @@ h1, h2, h3, h4, h5 {
 .physo-btn--outline:hover { background: var(--physo-naranja); color: var(--physo-blanco); }
 
 .physo-btn--hero {
-  background: var(--physo-naranja);
+  background: var(--physo-naranja-vivo);
   color: #FFFFFF;
   font-family: var(--physo-font-cuerpo);
   font-size: 1rem;
-  font-weight: 500;
-  padding: 1rem 2rem;
+  font-weight: 600;
+  padding: .95rem 1.6rem;
   border-radius: var(--physo-radius);
   letter-spacing: .01em;
+  gap: .85rem;
 }
 .physo-btn--hero:hover {
-  background: #1e2d56;
+  background: var(--physo-naranja-vivo-hover);
   color: #FFFFFF;
   transform: translateY(-2px);
   box-shadow: var(--physo-shadow-lg);
+}
+/* Flecha dentro de un círculo, como en el mockup. */
+.physo-btn__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
+  font-size: .95rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform .2s ease, background .2s ease;
+}
+.physo-btn--hero:hover .physo-btn__arrow {
+  background: rgba(255,255,255,.34);
+  transform: translateX(3px);
 }
 
 /* ============================================================
@@ -200,14 +227,14 @@ h1, h2, h3, h4, h5 {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--physo-fondo-header);
+  background: var(--physo-azul-header);
   border-bottom: 1px solid transparent;
   height: 80px;
   transition: border-color .3s ease, box-shadow .3s ease;
 }
 .site-header.is-scrolled {
-  border-bottom-color: var(--physo-borde);
-  box-shadow: 0 2px 20px rgba(0,0,0,.06);
+  border-bottom-color: rgba(255,255,255,.18);
+  box-shadow: 0 2px 20px rgba(0,0,0,.18);
 }
 .site-header__inner {
   display: flex;
@@ -250,13 +277,14 @@ h1, h2, h3, h4, h5 {
   color: var(--physo-azul);
   letter-spacing: -.02em;
 }
-.nav-primary .menu { display: flex; align-items: center; gap: .125rem; }
+.nav-primary .menu { display: flex; align-items: center; gap: .25rem; }
+.nav-primary .menu-item { position: relative; }
 .nav-primary .menu-item > a {
   display: block;
   padding: .5rem .875rem;
-  font-size: var(--physo-size-lg);
+  font-size: var(--physo-size-base);
   font-weight: 500;
-  color: var(--physo-texto);
+  color: rgba(255,255,255,.92);
   border-radius: var(--physo-radius);
   transition: background .15s, color .15s;
   text-decoration: none;
@@ -264,32 +292,61 @@ h1, h2, h3, h4, h5 {
 }
 .nav-primary .menu-item > a:hover,
 .nav-primary .menu-item.current-menu-item > a {
-  background: var(--physo-crema);
-  color: var(--physo-azul);
-}
-.nav-primary .menu-item:last-child > a {
-  background: var(--physo-naranja);
-  color: var(--physo-blanco);
-  padding: .5rem 1.25rem;
-  font-weight: 600;
-}
-.nav-primary .menu-item:last-child > a:hover {
-  background: var(--physo-naranja-hover);
+  background: rgba(255,255,255,.12);
   color: var(--physo-blanco);
 }
+
+/* Ítems con submenú: cursor + flecha, como el "Servicios ⌄" del mockup. */
+.nav-primary .menu-item-has-children > a::after {
+  content: '';
+  display: inline-block;
+  width: .4em;
+  height: .4em;
+  margin-left: .45em;
+  vertical-align: .12em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform .2s ease;
+}
+.nav-primary .menu-item-has-children:hover > a::after { transform: rotate(225deg); }
+
+.nav-primary .sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--physo-azul-header);
+  border-radius: var(--physo-radius);
+  box-shadow: 0 12px 32px rgba(0,0,0,.22);
+  padding: .5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 110;
+}
+.nav-primary .menu-item-has-children:hover > .sub-menu,
+.nav-primary .menu-item-has-children:focus-within > .sub-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-primary .sub-menu .menu-item > a { white-space: normal; }
+
 .nav-toggle {
   display: none;
   background: none;
-  border: 1.5px solid var(--physo-borde);
+  border: 1.5px solid rgba(255,255,255,.35);
   border-radius: var(--physo-radius);
   padding: .5rem .75rem;
   cursor: pointer;
   font-size: 1.1rem;
-  color: var(--physo-texto);
+  color: var(--physo-blanco);
   line-height: 1;
   transition: border-color .15s, background .15s;
 }
-.nav-toggle:hover { border-color: var(--physo-naranja); background: var(--physo-crema); }
+.nav-toggle:hover { border-color: var(--physo-blanco); background: rgba(255,255,255,.12); }
 
 /* ============================================================
    FOOTER
@@ -394,7 +451,7 @@ h1, h2, h3, h4, h5 {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: #1a1a1a;
+  background-color: var(--physo-azul-hero);
 }
 .physo-hero__bg {
   position: absolute;
@@ -407,15 +464,18 @@ h1, h2, h3, h4, h5 {
   object-fit: cover;
   display: block;
 }
+/* La foto ya viene con el tinte azul aplicado, así que el overlay solo
+   agrega el contraste que necesita el texto: fuerte a la izquierda,
+   donde va el titular, y suave a la derecha para no tapar la escena. */
 .physo-hero__overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   background: linear-gradient(
     to right,
-    rgba(10,10,10,.85) 0%,
-    rgba(10,10,10,.55) 60%,
-    rgba(10,10,10,.2)  100%
+    rgba(30,53,119,.90) 0%,
+    rgba(30,53,119,.72) 42%,
+    rgba(30,53,119,.34) 100%
   );
 }
 .physo-hero .physo-container {
@@ -439,7 +499,7 @@ h1, h2, h3, h4, h5 {
   font-family: var(--physo-font-titulo);
   font-size: 2.83rem;
   font-weight: 700;
-  color: #F5F0E8;
+  color: var(--physo-blanco);
   line-height: 1.15;
   margin-bottom: 1.5rem;
   opacity: 0;
@@ -449,12 +509,17 @@ h1, h2, h3, h4, h5 {
   font-family: var(--physo-font-cuerpo);
   font-size: 1.125rem;
   font-weight: 400;
-  color: #EEF0D3;
-  line-height: 1.5;
+  color: rgba(255,255,255,.92);
+  line-height: 1.55;
   margin-bottom: 2.5rem;
-  max-width: 500px;
+  max-width: 520px;
   opacity: 0;
   animation: heroFadeUp .6s ease .4s forwards;
+}
+/* Frases destacadas dentro del párrafo del hero. */
+.physo-hero__text strong {
+  font-weight: 700;
+  color: var(--physo-blanco);
 }
 .physo-hero .physo-btn--hero {
   opacity: 0;
@@ -467,8 +532,8 @@ h1, h2, h3, h4, h5 {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  border: 1.5px solid rgba(232,132,90,.2);
-  z-index: 1;
+  border: 1.5px solid rgba(255,255,255,.16);
+  z-index: 2;
   pointer-events: none;
 }
 .physo-hero__deco::after {
@@ -476,7 +541,21 @@ h1, h2, h3, h4, h5 {
   position: absolute;
   inset: 35px;
   border-radius: 50%;
-  border: 1.5px solid rgba(232,132,90,.12);
+  border: 1.5px solid rgba(255,255,255,.1);
+}
+/* Marca de agua del logo, arriba a la izquierda, como en el mockup. */
+.physo-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -60px;
+  width: 520px;
+  height: 200px;
+  background: url('assets/images/logo-footer.png') no-repeat left top;
+  background-size: contain;
+  opacity: .045;
+  z-index: 2;
+  pointer-events: none;
 }
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -1020,15 +1099,26 @@ h1, h2, h3, h4, h5 {
   .nav-primary.is-open {
     display: flex; flex-direction: column;
     position: absolute; top: 80px; left: 0; right: 0;
-    background: var(--physo-blanco);
-    border-bottom: 1px solid var(--physo-borde);
+    background: var(--physo-azul-header);
+    border-bottom: 1px solid rgba(255,255,255,.18);
     padding: var(--physo-space-sm);
-    box-shadow: var(--physo-shadow);
+    box-shadow: 0 8px 24px rgba(0,0,0,.28);
     z-index: 99;
   }
   .nav-primary.is-open .menu { flex-direction: column; align-items: stretch; gap: .25rem; }
   .nav-primary.is-open .menu-item > a { padding: .75rem 1rem; }
   .nav-toggle { display: block; }
+
+  /* En mobile el submenú se muestra desplegado, no flotante. */
+  .nav-primary.is-open .sub-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    padding: 0 0 0 .75rem;
+    min-width: 0;
+  }
 
   /* Hero */
   .physo-hero            { min-height: 420px; }
@@ -1036,6 +1126,8 @@ h1, h2, h3, h4, h5 {
   .physo-hero__text      { font-size: 1rem; margin-bottom: 1.75rem; }
   .physo-hero__content   { max-width: 100%; }
   .physo-btn--hero       { width: 100%; justify-content: center; }
+  .physo-hero::before    { width: 260px; height: 100px; top: -18px; left: -28px; }
+  .physo-hero__deco      { width: 200px; height: 200px; bottom: -60px; right: -40px; }
 
   /* Testimonios */
   .physo-section-header-testimonios h4 { font-size: 1.5rem; }

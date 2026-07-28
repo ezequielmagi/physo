@@ -10,29 +10,31 @@ get_header();
 
     <!-- Imagen de fondo -->
     <div class="physo-hero__bg">
-      <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/hero-bg.png' ); ?>"
-           alt="Physo hero">
+      <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/hero-gym.webp' ); ?>"
+           alt=""
+           aria-hidden="true"
+           fetchpriority="high"
+           width="1289"
+           height="723">
     </div>
 
-    <!-- Overlay oscuro encima de la imagen -->
+    <!-- Overlay azul encima de la imagen -->
     <div class="physo-hero__overlay"></div>
 
     <!-- Contenido -->
     <div class="physo-container">
       <div class="physo-hero__content">
         <h1 class="physo-hero__title">
-          Un espacio de movimiento seguro para tu proceso de salud.
+          Una boutique donde el movimiento vuelve a tener sentido.
         </h1>
         <div class="physo-hero__text">
           <p>
-            Cuando aparece un diagnóstico o una lesión, la relación con el cuerpo cambia. Empieza una etapa en la que comprender cómo moverse, fortalecerse y cuidarse adquiere un nuevo significado.</p>
-          <br>
-          <p>
-            En Physo acompañamos ese proceso a través de un enfoque integral que une movimiento adaptado, nutrición y bienestar emocional. Todo comienza con una evaluación funcional personalizada, pensada para comprender tu situación y definir el camino más adecuado para ti.
+            <strong>Physo</strong> es un espacio donde <strong>acompañamos a personas con condiciones médicas, lesiones, alteraciones posturales</strong> o miedo a volver a lesionarse a través de movimiento supervisado, regulación del sistema nervioso y seguimiento personalizado, para que vuelvan a moverse con mayor seguridad y confianza.
           </p>
         </div>
         <a href="#contacto" class="physo-btn physo-btn--hero">
-          Agenda tu evaluación y sesión gratuita →
+          Agenda tu evaluación y sesión gratuita
+          <span class="physo-btn__arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </div>

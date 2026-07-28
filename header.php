@@ -17,7 +17,7 @@
 
       <div class="site-logo">
         <a href="<?php echo esc_url( home_url('/') ); ?>">
-          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/logo-header.webp' ); ?>"
+          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/logo-footer.png' ); ?>"
                alt="<?php bloginfo('name'); ?>"
                height="40">
         </a>
