@@ -18,4 +18,13 @@ add_action( 'wp_enqueue_scripts', function() {
         true
     );
 
+    /**
+ * Registrar fuentes del tema en el selector de tipografía de Elementor.
+ */
+add_filter( 'elementor/fonts/additional_fonts', function( $fonts ) {
+	$fonts['TT Commons'] = 'system';
+	$fonts['Unbounded']  = 'system';
+	return $fonts;
+} );
+
 } );
