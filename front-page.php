@@ -111,33 +111,103 @@ get_header();
   <!-- ============ TESTIMONIOS ============ -->
   <section class="physo-section physo-section--azul physo-testimonios">
     <div class="physo-container">
-      <div class="physo-section-header-testimonios physo-reveal">
-        <h4 class="physo-testimonios__titulo">
-          Historias de personas que acompañamos en su mejora.
-        </h4>
-        <p>Cada proceso es diferente, pero todos comparten algo en común:<br>la decisión de volver a confiar en su cuerpo.</p>
+      <div class="physo-testimonios__cabecera physo-reveal">
+        <div class="physo-section-header-testimonios">
+          <h4 class="physo-testimonios__titulo">
+            Historias de personas que acompañamos en su mejora.
+          </h4>
+          <p>Cada proceso es diferente, pero todos comparten algo en común:<br>la decisión de volver a confiar en su cuerpo.</p>
+        </div>
+        <div class="physo-slider__nav">
+          <button class="physo-slider__prev" aria-label="Testimonio anterior">&#8592;</button>
+          <button class="physo-slider__next" aria-label="Testimonio siguiente">&#8594;</button>
+        </div>
       </div>
       <div class="physo-slider physo-reveal">
         <div class="physo-slider__track">
           <?php
+          // 'foto' vacío cae en un avatar con las iniciales.
+          // 'destacado' pinta la card de naranja.
           $testimonios = [
-            [ 'nombre' => 'Juliana Black',   'texto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat tortor non mi ullamcorper, vel pretium nunc fringilla.' ],
-            [ 'nombre' => 'Carlos Méndez',   'texto' => 'Physo cambió completamente mi forma de entender el movimiento. El acompañamiento es profesional y muy humano.' ],
-            [ 'nombre' => 'Philip Galligan', 'texto' => 'Después de meses con dolor, finalmente encontré un lugar donde se toman el tiempo de escucharme y guiarme.' ],
-            [ 'nombre' => 'Sofía Herrera',   'texto' => 'El equipo me ayudó a recuperar movilidad y confianza en mi cuerpo con ejercicios personalizados y seguimiento constante.' ],
+            [
+              'nombre' => 'Alfredo Celis',
+              'foto'   => 'testimonio-alfredo-celis.webp',
+              'texto'  => 'Elegí Physo porque es un concepto diferente de actividad física centrado en la necesidad de cada persona. La actividad física no se basa en máquinas sino que utiliza la fuerza de la misma persona para lograr la recuperación o mejoramiento de la salud. Es muy personalizado, siempre hay un personal guiándote o apoyándote en la ejecución de los ejercicios.',
+            ],
+            [
+              'nombre'    => 'Farah Wong',
+              'foto'      => 'testimonio-farah-wong.webp',
+              'destacado' => true,
+              'texto'     => 'Elijo Physo porque me apoyan a luchar por mi mejor versión, mi cuerpo necesita ejercicio y movimiento. Ellos me han hecho entender que tener un cuerpo saludable es elegirse día a día. Y aunque todos los días no podré dar lo mejor de mí sigo intentándolo.',
+            ],
+            [
+              'nombre' => 'Rosario Olivera',
+              'foto'   => 'testimonio-rosario-olivera.webp',
+              'texto'  => 'Elijo Physo porque el entrenamiento personalizado me permite hacer ejercicios de forma segura y adaptadas a mis necesidades. Valoro mucho contar con profesionales que entienden mi condición y supervisan mi progreso de cerca. Esto me da la confianza necesaria para mantenerme activa y cuidar mejor de mi salud cada día.',
+            ],
+            [
+              'nombre' => 'Marta Soler',
+              'cargo'  => 'Empresaria',
+              'foto'   => 'testimonio-marta-soler.webp',
+              'texto'  => 'La atención y el cuidado al detalle son excepcionales. Realmente se preocupan por tu bienestar a largo plazo.',
+            ],
+            [
+              'nombre' => 'Marisol Leyva',
+              'foto'   => 'testimonio-marisol-leyva.webp',
+              'texto'  => 'Después de años lidiando con dolores crónicos y diagnósticos incompletos, encontrar a Physo fue el alivio que mi cuerpo y mi familia tanto esperábamos. Gracias a su evaluación funcional y al trato humano de su increíble equipo, hoy no solo entiendo mi salud, sino que he recuperado la independencia para caminar sin molestias y vivir con alegría. Es mucho más que un entrenamiento; es el lugar donde encontré los resultados reales que me devolvieron la libertad de moverme.',
+            ],
+            [
+              'nombre' => 'Sergio Yap',
+              'foto'   => 'testimonio-sergio-yap.webp',
+              'texto'  => 'Elijo Physo porque me ayuda a poder realizar mis actividades diarias de ejercicio para practicar otros deportes (fútbol) y llegar bien a la vejez. El equipo es super amable, divertido y muy expertos en las diferentes maneras de fortalecer el cuerpo o aliviar dolores/ tensiones. También la locación está bastante céntrica.',
+            ],
+            [
+              'nombre' => 'Gerardo Chulluncuy',
+              'foto'   => 'testimonio-gerardo-chulluncuy.webp',
+              'texto'  => 'De inicio, acudí para recuperarme físicamente de un accidente que tuve. En el lapso de estos años me parece la mejor opción para entrenar personalizadamente y con la seguridad que estás al costado de excelentes profesionales que forman parte del equipo de Physo.',
+            ],
+            [
+              'nombre' => 'Esther Villavicencio',
+              'foto'   => 'testimonio-esther-villavicencio.webp',
+              'texto'  => 'Vine para mejorar mi postura y, poco a poco, también he empezado a sentirme mucho mejor en mi día a día. Además, el acompañamiento hace que todo el proceso sea más seguro y constante.',
+            ],
           ];
-          foreach ( $testimonios as $t ) : ?>
+
+          foreach ( $testimonios as $t ) :
+            $destacado = ! empty( $t['destacado'] );
+
+            // Iniciales para el avatar cuando todavía no hay foto.
+            $partes    = preg_split( '/\s+/', trim( $t['nombre'] ) );
+            $iniciales = mb_strtoupper( mb_substr( $partes[0], 0, 1 ) );
+            if ( isset( $partes[1] ) ) {
+              $iniciales .= mb_strtoupper( mb_substr( $partes[1], 0, 1 ) );
+            }
+            ?>
             <div class="physo-slider__slide">
-              <div class="physo-testimonio__card">
-                <div class="physo-testimonio__estrellas">★★★★★</div>
-                <p class="physo-testimonio__texto">"<?php echo esc_html( $t['texto'] ); ?>"</p>
-                <p class="physo-testimonio__nombre"><?php echo esc_html( $t['nombre'] ); ?></p>
+              <div class="physo-testimonio__card<?php echo $destacado ? ' physo-testimonio__card--destacado' : ''; ?>">
+                <span class="physo-testimonio__comilla" aria-hidden="true">&rdquo;</span>
+                <p class="physo-testimonio__texto">&ldquo;<?php echo esc_html( $t['texto'] ); ?>&rdquo;</p>
+                <div class="physo-testimonio__persona">
+                  <?php if ( $t['foto'] ) : ?>
+                    <img class="physo-testimonio__foto"
+                         src="<?php echo esc_url( PHYSO_URI . '/assets/images/' . $t['foto'] ); ?>"
+                         alt=""
+                         aria-hidden="true"
+                         loading="lazy">
+                  <?php else : ?>
+                    <span class="physo-testimonio__foto physo-testimonio__foto--iniciales" aria-hidden="true"><?php echo esc_html( $iniciales ); ?></span>
+                  <?php endif; ?>
+                  <span class="physo-testimonio__identidad">
+                    <span class="physo-testimonio__nombre"><?php echo esc_html( $t['nombre'] ); ?></span>
+                    <?php if ( ! empty( $t['cargo'] ) ) : ?>
+                      <span class="physo-testimonio__cargo"><?php echo esc_html( $t['cargo'] ); ?></span>
+                    <?php endif; ?>
+                  </span>
+                </div>
               </div>
             </div>
           <?php endforeach; ?>
         </div>
-        <button class="physo-slider__prev" aria-label="Anterior">←</button>
-        <button class="physo-slider__next" aria-label="Siguiente">→</button>
       </div>
     </div>
   </section>

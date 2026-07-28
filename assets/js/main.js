@@ -175,13 +175,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.physo-slider').forEach( slider => {
     const track   = slider.querySelector('.physo-slider__track');
     const slides  = slider.querySelectorAll('.physo-slider__slide');
-    const btnPrev = slider.querySelector('.physo-slider__prev');
-    const btnNext = slider.querySelector('.physo-slider__next');
+    // Los controles pueden vivir fuera del slider, junto al título.
+    const ambito  = slider.closest('section') || document;
+    const btnPrev = slider.querySelector('.physo-slider__prev') || ambito.querySelector('.physo-slider__prev');
+    const btnNext = slider.querySelector('.physo-slider__next') || ambito.querySelector('.physo-slider__next');
     if ( ! track || slides.length < 2 ) return;
 
     let current = 0;
     let slideWidth = slides[0].getBoundingClientRect().width;
-    const getVisibleSlides = () => window.matchMedia('(max-width: 768px)').matches ? 1 : 2;
+    const getVisibleSlides = () => {
+      if ( window.matchMedia('(max-width: 768px)').matches ) return 1;
+      if ( window.matchMedia('(max-width: 1024px)').matches ) return 2;
+      return 3;
+    };
     const getMaxIndex = () => Math.max(0, slides.length - getVisibleSlides());
 
     const updateDimensions = () => {
