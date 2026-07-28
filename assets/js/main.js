@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function render(value) {
       if ( prefix ) {
-        el.innerHTML = '<span style="color:#f97316">' + prefix + '</span>' + value + suffix;
+        el.innerHTML = '<span class="physo-stat__signo">' + prefix + '</span>' + value + suffix;
       } else {
         el.textContent = value + suffix;
       }
@@ -183,10 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let current = 0;
     let slideWidth = slides[0].getBoundingClientRect().width;
+    // Cada slider define cuántas ve en desktop con data-visibles.
+    const visiblesDesktop = Number( slider.dataset.visibles ) || 3;
     const getVisibleSlides = () => {
       if ( window.matchMedia('(max-width: 768px)').matches ) return 1;
-      if ( window.matchMedia('(max-width: 1024px)').matches ) return 2;
-      return 3;
+      if ( window.matchMedia('(max-width: 1024px)').matches ) return Math.min( 2, visiblesDesktop );
+      return visiblesDesktop;
     };
     const getMaxIndex = () => Math.max(0, slides.length - getVisibleSlides());
 

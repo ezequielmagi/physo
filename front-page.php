@@ -215,27 +215,42 @@ get_header();
   <!-- ============ ESTADÍSTICAS ============ -->
   <section class="physo-section physo-stats">
     <div class="physo-container">
-      <div class="physo-stats__header physo-reveal">
-        <h2 class="physo-stats__heading">Una comunidad construida alrededor del movimiento y la salud</h2>
-        <p class="physo-stats__desc"><strong>Physo</strong> es un centro especializado en acompañamiento integral para condiciones de salud y procesos de lesión, donde el movimiento, la nutrición y el bienestar emocional forman parte de un mismo enfoque.</p>
-      </div>
-      <div class="physo-stats__grid physo-reveal-group">
-        <div class="physo-stat physo-reveal .physo-stat__card">
-          <span class="physo-stat__number physo-counter" data-target="3" data-prefix="+" data-suffix=" años">0</span>
-          <span class="physo-stat__label">Acompañando procesos de salud.</span>
+      <div class="physo-stats__inner physo-reveal">
+
+        <div class="physo-stats__collage">
+          <img class="physo-stats__foto physo-stats__foto--a"
+               src="<?php echo esc_url( PHYSO_URI . '/assets/images/comunidad-evaluacion.webp' ); ?>"
+               alt="Un profesional de Physo explicando anatomía muscular a una paciente"
+               width="493" height="461" loading="lazy">
+          <img class="physo-stats__foto physo-stats__foto--b"
+               src="<?php echo esc_url( PHYSO_URI . '/assets/images/comunidad-consulta.webp' ); ?>"
+               alt="Un profesional de Physo mostrando un modelo de rodilla durante una consulta"
+               width="342" height="453" loading="lazy">
         </div>
-        <div class="physo-stat physo-reveal .physo-stat__card">
-          <span class="physo-stat__number physo-counter" data-target="70" data-prefix="+" data-suffix="">0</span>
-          <span class="physo-stat__label">Personas actualmente en entrenamiento supervisado.</span>
+
+        <div class="physo-stats__contenido">
+          <h2 class="physo-stats__heading">Una comunidad construida alrededor del movimiento y el bienestar</h2>
+
+          <div class="physo-stats__grid physo-reveal-group">
+            <?php
+            $physo_stats = [
+              [ 'valor' => 3,  'sufijo' => ' años', 'label' => 'Transformando la relación de las personas con el movimiento.' ],
+              [ 'valor' => 70, 'sufijo' => '',      'label' => 'Personas trabajando hoy por recuperar movimiento, bienestar y confianza.' ],
+              [ 'valor' => 40, 'sufijo' => '',      'label' => 'Condiciones médicas acompañadas a través de Movimiento Adaptado.' ],
+              [ 'valor' => 30, 'sufijo' => '',      'label' => 'Lesiones y alteraciones posturales abordadas mediante Movimiento Evolutivo.' ],
+            ];
+            foreach ( $physo_stats as $s ) : ?>
+              <div class="physo-stat physo-reveal">
+                <span class="physo-stat__number physo-counter"
+                      data-target="<?php echo esc_attr( $s['valor'] ); ?>"
+                      data-prefix="+"
+                      data-suffix="<?php echo esc_attr( $s['sufijo'] ); ?>">0</span>
+                <span class="physo-stat__label"><?php echo esc_html( $s['label'] ); ?></span>
+              </div>
+            <?php endforeach; ?>
+          </div>
         </div>
-        <div class="physo-stat physo-reveal .physo-stat__card">
-          <span class="physo-stat__number physo-counter" data-target="40" data-prefix="+" data-suffix="">0</span>
-          <span class="physo-stat__label">Condiciones médicas abordadas a través de movimiento adaptado.</span>
-        </div>
-        <div class="physo-stat physo-reveal .physo-stat__card">
-          <span class="physo-stat__number physo-counter" data-target="30" data-prefix="+" data-suffix="">0</span>
-          <span class="physo-stat__label">Tipos de lesiones trabajadas mediante fortalecimiento estructural.</span>
-        </div>
+
       </div>
     </div>
   </section>
@@ -243,51 +258,56 @@ get_header();
   <!-- ============ ESPACIO ============ -->
   <section class="physo-section physo-espacio">
 
-    <!-- Círculos decorativos -->
-    <div class="physo-espacio__deco" aria-hidden="true">
-      <span class="physo-espacio__deco-ring physo-espacio__deco-ring--1"></span>
-      <span class="physo-espacio__deco-ring physo-espacio__deco-ring--2"></span>
-      <span class="physo-espacio__deco-ring physo-espacio__deco-ring--3"></span>
-    </div>
+    <!-- Asterisco decorativo -->
+    <svg class="physo-espacio__asterisco" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <g fill="currentColor">
+        <rect x="44" y="0" width="12" height="100" rx="6"/>
+        <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(45 50 50)"/>
+        <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(90 50 50)"/>
+        <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(135 50 50)"/>
+      </g>
+    </svg>
 
     <div class="physo-container">
 
       <!-- Cabecera: título + flechas -->
       <div class="physo-espacio__header physo-reveal">
         <h2 class="physo-espacio__heading">Un espacio pensado para el cuidado<br>y el movimiento consciente</h2>
-        <div class="physo-espacio__nav">
-          <button class="physo-espacio__btn" aria-label="Anterior">←</button>
-          <button class="physo-espacio__btn" aria-label="Siguiente">→</button>
+        <div class="physo-slider__nav">
+          <button class="physo-slider__prev" aria-label="Foto anterior">&#8592;</button>
+          <button class="physo-slider__next" aria-label="Foto siguiente">&#8594;</button>
         </div>
       </div>
 
-      <!-- Grilla de imágenes -->
-      <div class="physo-espacio__grid physo-reveal-group">
-        <div class="physo-espacio__img physo-img-zoom physo-reveal">
-          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/espacio-1.png' ); ?>"
-               alt="Sesión de movimiento adaptado"
-               onerror="this.parentElement.classList.add('physo-espacio__img--placeholder')">
-        </div>
-        <div class="physo-espacio__img physo-img-zoom physo-reveal">
-          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/espacio-2.png' ); ?>"
-               alt="Entrenamiento supervisado"
-               onerror="this.parentElement.classList.add('physo-espacio__img--placeholder')">
-        </div>
-        <div class="physo-espacio__img physo-img-zoom physo-reveal">
-          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/espacio-1.png ' ); ?>"
-               alt="Bienestar y calma"
-               onerror="this.parentElement.classList.add('physo-espacio__img--placeholder')">
-        </div>
-        <div class="physo-espacio__img physo-img-zoom physo-reveal">
-          <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/espacio-2.png' ); ?>"
-               alt="Acompañamiento profesional"
-               onerror="this.parentElement.classList.add('physo-espacio__img--placeholder')">
+      <!-- Carrusel de fotos -->
+      <div class="physo-slider physo-espacio__slider physo-reveal" data-visibles="2">
+        <div class="physo-slider__track">
+          <?php
+          $physo_espacio = [
+            [ 'archivo' => 'espacio-01.webp', 'alt' => 'Entrenamiento con barra supervisado por un profesional' ],
+            [ 'archivo' => 'espacio-02.webp', 'alt' => 'Ejercicio con banda elástica acompañado por un entrenador' ],
+            [ 'archivo' => 'espacio-03.webp', 'alt' => 'Trabajo de movilidad con pelota junto a un profesional' ],
+            [ 'archivo' => 'espacio-04.webp', 'alt' => 'Rack de mancuernas y pesas rusas del centro' ],
+            [ 'archivo' => 'espacio-05.webp', 'alt' => 'Espaldera con bandas de suspensión' ],
+            [ 'archivo' => 'espacio-06.webp', 'alt' => 'Estantería con pelotas y material de entrenamiento' ],
+            [ 'archivo' => 'espacio-07.webp', 'alt' => 'Dos profesionales del equipo revisando material' ],
+            [ 'archivo' => 'espacio-08.webp', 'alt' => 'Vista general de la sala de entrenamiento' ],
+          ];
+          foreach ( $physo_espacio as $e ) : ?>
+            <div class="physo-slider__slide">
+              <div class="physo-espacio__img">
+                <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/' . $e['archivo'] ); ?>"
+                     alt="<?php echo esc_attr( $e['alt'] ); ?>"
+                     width="576" height="348" loading="lazy">
+              </div>
+            </div>
+          <?php endforeach; ?>
         </div>
       </div>
 
       <!-- Descripción -->
       <p class="physo-espacio__caption physo-reveal">
-        Cada detalle del centro está diseñado para <strong>acompañar procesos de salud</strong> con <strong>seguridad, calma y supervisión profesional</strong>.
+        Cada detalle de la boutique está diseñada para <strong>acompañar procesos de salud y movimiento</strong> con <strong>seguridad, calma y supervisión profesional</strong>.
       </p>
 
     </div>
@@ -355,13 +375,30 @@ get_header();
 
   <!-- ============ FORMULARIO DE CONTACTO ============ -->
   <section class="physo-section physo-contacto" id="contacto">
+    <!-- Decoraciones -->
+    <svg class="physo-contacto__anillos" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-width="11">
+        <circle cx="100" cy="100" r="32"/>
+        <circle cx="100" cy="100" r="59"/>
+        <circle cx="100" cy="100" r="86"/>
+      </g>
+    </svg>
+    <svg class="physo-contacto__asterisco" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <g fill="currentColor">
+        <rect x="44" y="0" width="12" height="100" rx="6"/>
+        <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(45 50 50)"/>
+        <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(90 50 50)"/>
+        <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(135 50 50)"/>
+      </g>
+    </svg>
+
     <div class="physo-container">
-      <div class="physo-section-header physo-reveal">
-        <p class="physo-eyebrow">Conversemos sobre tu situación</p>
-        <h2>Si tenés preguntas o querés empezar, escribinos</h2>
-        <p>Nuestro equipo responde en menos de 24 horas a través del formulario paso.</p>
+      <div class="physo-contacto__card physo-reveal">
+      <div class="physo-section-header">
+        <h2 class="physo-contacto__titulo">Conversemos sobre tu situación</h2>
+        <p class="physo-contacto__bajada">¿Tienes dudas o quieres empezar?<br>Nuestro equipo se pondrá en contacto contigo para ayudarte a encontrar el servicio más adecuado para tu proceso.</p>
       </div>
-      <form class="physo-form physo-reveal" method="post">
+      <form class="physo-form" method="post">
         <?php wp_nonce_field( 'physo_contacto', 'physo_nonce' ); ?>
         <div class="physo-form__grid">
           <div class="physo-form__group">
@@ -378,22 +415,65 @@ get_header();
           </div>
           <div class="physo-form__group">
             <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="+54 9 11 0000-0000">
+            <input type="tel" id="telefono" name="telefono" placeholder="Tu número de celular">
           </div>
         </div>
         <div class="physo-form__group physo-form__group--full">
           <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contanos brevemente tu situación..." required></textarea>
+          <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos brevemente qué te gustaría mejorar, recuperar o volver a hacer." required></textarea>
         </div>
         <div class="physo-form__submit">
-          <button type="submit" class="physo-btn physo-btn--primary">
-            Agendar una consulta →
+          <button type="submit" class="physo-btn physo-btn--naranja">
+            Agenda tu evaluación y sesión GRATUITA
+            <span class="physo-btn__flecha" aria-hidden="true">→</span>
           </button>
         </div>
       </form>
+      </div>
     </div>
   </section>
 
+  <!-- ============ UBICACIÓN ============ -->
+  <?php
+  // Misma dirección que figura en el footer (footer.php).
+  $physo_direccion = 'Jirón Cruz del Sur 140, Santiago de Surco, Lima, Perú';
+  ?>
+  <section class="physo-section physo-ubicacion" id="ubicacion">
+    <div class="physo-container">
+      <div class="physo-ubicacion__grid physo-reveal">
+
+        <div class="physo-ubicacion__col">
+          <h2 class="physo-ubicacion__titulo">Dónde nos encontramos:</h2>
+          <p class="physo-ubicacion__bajada">Aquí puedes ver cómo llegar a nuestras instalaciones.</p>
+
+          <div class="physo-ubicacion__video">
+            <button type="button"
+                    class="physo-video-trigger"
+                    data-video="<?php echo esc_url( PHYSO_URI . '/assets/videos/ubicacion.mp4' ); ?>"
+                    aria-label="Reproducir el video de cómo llegar a Physo">
+              <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/poster-ubicacion.webp' ); ?>"
+                   alt=""
+                   aria-hidden="true"
+                   loading="lazy">
+              <span class="physo-video-trigger__play" aria-hidden="true">
+                <svg viewBox="0 0 16 18" focusable="false"><path d="M16 9 0 18V0z" fill="currentColor"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="physo-ubicacion__mapa">
+          <iframe
+            src="https://maps.google.com/maps?q=<?php echo rawurlencode( $physo_direccion ); ?>&amp;z=16&amp;hl=es&amp;output=embed"
+            title="Mapa con la ubicación de Physo"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 </main>
 

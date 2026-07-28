@@ -72,7 +72,9 @@ Text Domain: physo
   --physo-texto:         #2C2C2C;
   --physo-texto-claro:   #666666;
   --physo-borde:         #E0E0E0;
-  --physo-fondo-header:  #EEF0D3;
+  /* Crema verdoso de marca. Antes se llamaba --physo-fondo-header, de
+     cuando el header era claro; hoy lo usa el fondo del formulario. */
+  --physo-crema-verde:   #EEF0D3;
 
   --physo-font-titulo:   'TT Commons', system-ui, sans-serif;
   --physo-font-cuerpo:   'TT Commons', system-ui, sans-serif;
@@ -1014,60 +1016,57 @@ h1, h2, h3, h4, h5 {
    ESTADÍSTICAS
    ============================================================ */
 .physo-stats{
-  background-color: #eef0d3;
+  background-color: var(--physo-blanco);
 }
 
-.physo-stats__grid .physo-stat{
-    background-color: #fafafa;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-    border-radius: 20px;
-}
-
-.physo-stats__header {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--physo-space-xl);
+/* Collage a la izquierda, título y cifras a la derecha. */
+.physo-stats__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--physo-space-lg);
   align-items: center;
-  margin-bottom: var(--physo-space-lg);
 }
+
+.physo-stats__collage { position: relative; padding-bottom: 3.5rem; }
+.physo-stats__foto {
+  display: block;
+  height: auto;
+  border-radius: 18px;
+}
+.physo-stats__foto--a { width: 80%; }
+.physo-stats__foto--b {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 48%;
+  /* El borde blanco separa una foto de la otra donde se superponen. */
+  border: 6px solid var(--physo-blanco);
+  border-radius: 20px;
+}
+
 .physo-stats__heading {
   font-size: var(--physo-size-3xl);
   font-weight: 700;
-  color: var(--physo-azul);
+  color: var(--physo-naranja-vivo);
   line-height: 1.25;
-  margin: 0;
-  max-width: 30%;
+  margin: 0 0 var(--physo-space-md);
+  max-width: 100%;
 }
-.physo-stats__desc {
-  font-size: var(--physo-size-sm);
-  color: var(--physo-texto-claro);
-  line-height: 1.7;
-  margin: 0;
-  max-width: 30%;
-}
-.physo-stats__desc strong { color: var(--physo-naranja); font-weight: 600; }
-.physo-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--physo-space-md); }
+
+.physo-stats__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; }
 .physo-stat { text-align: left; }
 .physo-stat__number {
   font-family: var(--physo-font-numeros);
-  font-size: var(--physo-size-4xl);
+  font-size: var(--physo-size-3xl);
   font-weight: 700;
   color: var(--physo-azul);
   display: block;
   line-height: 1;
   margin-bottom: .5rem;
 }
-
-.physo-counter[data-prefix="+"]::before {
-    color: orange;
-}
-
-.physo-stat__label { font-size: 14px; font-weight: 400; color: var(--physo-texto-claro); line-height: 1.5; text-align: center;}
+/* El "+" lo inyecta el contador desde main.js. */
+.physo-stat__signo { color: var(--physo-naranja-vivo); margin-right: .15em; }
+.physo-stat__label { font-size: 14px; font-weight: 400; color: var(--physo-texto-claro); line-height: 1.5; text-align: left; }
 
 /* ============================================================
    ESPACIO
@@ -1075,32 +1074,25 @@ h1, h2, h3, h4, h5 {
 .physo-espacio {
   position: relative;
   overflow: hidden;
-  background: var(--physo-blanco);
+  background: var(--physo-naranja-vivo);
 }
 
-/* Círculos decorativos */
-.physo-espacio__deco {
+/* Asterisco decorativo, abajo a la izquierda. */
+.physo-espacio__asterisco {
   position: absolute;
-  left: -80px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: -30px;
+  bottom: 2rem;
+  width: 130px;
+  height: 130px;
+  color: var(--physo-azul);
   pointer-events: none;
   z-index: 0;
 }
-.physo-espacio__deco-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 2px solid rgba(232, 132, 90, 0.35);
-}
-.physo-espacio__deco-ring--1 { width: 220px; height: 220px; }
-.physo-espacio__deco-ring--2 { width: 160px; height: 160px; border-color: rgba(232, 132, 90, 0.55); }
-.physo-espacio__deco-ring--3 { width: 90px;  height: 90px;  background: rgba(232, 132, 90, 0.12); border: none; }
 
 /* Cabecera */
 .physo-espacio__header {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -1110,83 +1102,72 @@ h1, h2, h3, h4, h5 {
 .physo-espacio__heading {
   font-size: var(--physo-size-3xl);
   font-weight: 700;
-  color: var(--physo-azul);
+  color: var(--physo-blanco);
   line-height: 1.25;
   max-width: 520px;
 }
-.physo-espacio__nav {
-  display: flex;
-  gap: .5rem;
-  flex-shrink: 0;
-  margin-top: .25rem;
-}
-.physo-espacio__btn {
+
+/* Flechas sobre el naranja: la de avanzar va en azul. */
+.physo-espacio .physo-slider__nav { margin-top: .25rem; }
+.physo-espacio .physo-slider__prev,
+.physo-espacio .physo-slider__next {
   width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1.5px solid var(--physo-borde);
-  background: var(--physo-blanco);
-  color: var(--physo-texto);
-  font-size: 1.1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color .2s, background .2s, color .2s;
-}
-.physo-espacio__btn:hover {
-  border-color: var(--physo-naranja);
-  background: var(--physo-naranja);
+  height: 38px;
+  background: rgba(0,0,0,.16);
   color: var(--physo-blanco);
 }
+.physo-espacio .physo-slider__next { background: var(--physo-azul); }
+.physo-espacio .physo-slider__prev:hover { background: rgba(0,0,0,.3); }
+.physo-espacio .physo-slider__next:hover { background: #1e2d56; }
 
-/* Grilla de imágenes */
-.physo-espacio__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+/* Carrusel */
+.physo-espacio__slider {
+  position: relative;
+  z-index: 1;
   margin-bottom: var(--physo-space-md);
-}
-.physo-espacio__img {
-  border-radius: var(--physo-radius-lg);
+  /* Recorta al ancho del contenedor: sin esto las fotos siguientes
+     asoman hasta el borde de la pantalla. */
   overflow: hidden;
-  aspect-ratio: 3 / 4;
-  background: #d8e0ec;
 }
+/* El ancho tiene que coincidir con el data-visibles que lee el JS. */
+.physo-espacio__slider .physo-slider__slide {
+  flex: 0 0 50%;
+  max-width: 50%;
+  opacity: 1;
+}
+/* Las fotos ya traen las esquinas redondeadas recortadas en el archivo,
+   así que no se les aplica border-radius: dibujaría una segunda curva. */
 .physo-espacio__img img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
-.physo-espacio__img--placeholder {
-  background: linear-gradient(160deg, #c8d4e4 0%, #a8b8cc 100%);
-}
-.physo-espacio__img--placeholder img { display: none; }
 
 /* Caption */
 .physo-espacio__caption {
+  position: relative;
+  z-index: 1;
   text-align: end;
   font-size: var(--physo-size-base);
-  color: var(--physo-texto-claro);
+  color: rgba(255,255,255,.9);
   line-height: 1.7;
   max-width: 640px;
   margin-left: auto;
 }
 .physo-espacio__caption strong {
-  color: var(--physo-texto);
-  font-weight: 600;
+  color: var(--physo-blanco);
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
-  .physo-espacio__grid    { grid-template-columns: repeat(2, 1fr); }
-  .physo-espacio__heading { font-size: var(--physo-size-2xl); }
-  .physo-espacio__deco    { display: none; }
-  .physo-espacio__header  { flex-direction: column; gap: .75rem; }
-  .physo-espacio__caption { text-align: left; }
-}
-@media (max-width: 480px) {
-  .physo-espacio__grid { grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .physo-espacio__heading  { font-size: var(--physo-size-2xl); }
+  .physo-espacio__header   { flex-direction: column; gap: .75rem; }
+  .physo-espacio__caption  { text-align: left; }
+  /* Hay que repetirlo con la misma especificidad que la regla de
+     desktop, si no aquella gana y siguen entrando dos fotos. */
+  .physo-espacio__slider .physo-slider__slide { flex: 0 0 100%; max-width: 100%; }
+  /* En mobile el texto ocupa todo el ancho y el asterisco se le encima. */
+  .physo-espacio__asterisco { display: none; }
 }
 
 /* ============================================================
@@ -1271,6 +1252,97 @@ h1, h2, h3, h4, h5 {
 /* ============================================================
    FORMULARIO
    ============================================================ */
+/* ── Ubicación ──────────────────────────────────────────── */
+.physo-ubicacion { background: var(--physo-azul); }
+.physo-ubicacion__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: var(--physo-space-md);
+  align-items: start;
+}
+.physo-ubicacion__titulo {
+  font-size: var(--physo-size-2xl);
+  font-weight: 700;
+  color: var(--physo-blanco);
+  margin-bottom: .5rem;
+}
+.physo-ubicacion__bajada {
+  font-size: var(--physo-size-base);
+  color: rgba(255,255,255,.85);
+  margin-bottom: var(--physo-space-md);
+}
+.physo-ubicacion__video {
+  border-radius: var(--physo-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+.physo-ubicacion__video .physo-video-trigger { background: rgba(255,255,255,.1); }
+.physo-ubicacion__mapa {
+  border-radius: var(--physo-radius-lg);
+  overflow: hidden;
+  line-height: 0;
+}
+.physo-ubicacion__mapa iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .physo-ubicacion__grid { grid-template-columns: 1fr; }
+  .physo-ubicacion__mapa iframe { min-height: 280px; }
+}
+
+/* ── Contacto ───────────────────────────────────────────── */
+.physo-contacto {
+  position: relative;
+  overflow: hidden;
+  background: var(--physo-crema-verde);
+}
+.physo-contacto__anillos {
+  position: absolute;
+  top: -60px;
+  right: -70px;
+  width: 260px;
+  height: 260px;
+  color: rgba(224,109,6,.22);
+  pointer-events: none;
+}
+.physo-contacto__asterisco {
+  position: absolute;
+  left: -40px;
+  bottom: 3rem;
+  width: 150px;
+  height: 150px;
+  color: rgba(43,63,108,.28);
+  pointer-events: none;
+}
+.physo-contacto__card {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--physo-blanco);
+  border: 1.5px solid var(--physo-azul);
+  border-radius: var(--physo-radius-lg);
+  padding: 2.75rem 2.5rem;
+}
+.physo-contacto__titulo {
+  font-size: var(--physo-size-2xl);
+  font-weight: 700;
+  color: var(--physo-azul);
+  margin-bottom: .75rem;
+}
+.physo-contacto__bajada {
+  font-size: var(--physo-size-base);
+  color: var(--physo-texto-claro);
+  line-height: 1.6;
+  margin: 0;
+}
+.physo-contacto__card .physo-section-header { margin-bottom: 1.75rem; }
+
 .physo-form { max-width: 760px; margin: 0 auto; }
 .physo-form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
 .physo-form__group { display: flex; flex-direction: column; gap: .5rem; }
@@ -1297,10 +1369,8 @@ h1, h2, h3, h4, h5 {
    ============================================================ */
 @media (max-width: 1024px) {
   .site-footer__grid    { grid-template-columns: 1fr 1fr; }
-  .physo-stats__header  { flex-direction: column; gap: var(--physo-space-md); }
-  .physo-stats__heading { max-width: 100%; }
-  .physo-stats__desc    { max-width: 100%; }
-  .physo-stats__grid    { grid-template-columns: repeat(2, 1fr); }
+  .physo-stats__inner   { grid-template-columns: 1fr; gap: var(--physo-space-md); }
+  .physo-stats__collage { max-width: 520px; }
   .physo-slider__slide {
     flex: 0 0 50%;
     max-width: 50%;
@@ -1366,12 +1436,16 @@ h1, h2, h3, h4, h5 {
   .physo-testimonios::before { display: none; }
 
   /* Stats */
-  .physo-stats__grid     { grid-template-columns: repeat(2, 1fr); }
+  /* Una sola columna: a 390px las descripciones no entran en dos. */
+  .physo-stats__grid     { grid-template-columns: 1fr; gap: 1.5rem; }
   .physo-stats__heading  { font-size: var(--physo-size-2xl); }
+  .physo-stats__collage  { padding-bottom: 2.5rem; }
 
   /* Grids */
   .physo-selector__grid  { grid-template-columns: 1fr; }
   .physo-form__grid      { grid-template-columns: 1fr; }
+  .physo-contacto__card  { padding: 2rem 1.25rem; }
+  .physo-contacto__anillos { width: 170px; height: 170px; top: -40px; right: -50px; }
 
   /* Footer */
   .site-footer__grid     { grid-template-columns: 1fr; gap: var(--physo-space-md); }
