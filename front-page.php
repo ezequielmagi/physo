@@ -29,11 +29,11 @@ get_header();
         </h1>
         <div class="physo-hero__text">
           <p>
-            <strong>Physo</strong> es un espacio donde <strong>acompañamos a personas con condiciones médicas, lesiones, alteraciones posturales</strong> o miedo a volver a lesionarse a través de movimiento supervisado, regulación del sistema nervioso y seguimiento personalizado, para que vuelvan a moverse con mayor seguridad y confianza.
+            <strong>Physo</strong> es un espacio donde acompañamos a personas con <strong>condiciones médicas (congénitas o adquiridas), lesiones, alteraciones posturales o miedo a volver a lesionarse</strong> a través de movimiento supervisado, regulación del sistema nervioso y seguimiento personalizado, para que vuelvan a moverse con mayor seguridad y confianza.
           </p>
         </div>
         <a href="#contacto" class="physo-btn physo-btn--hero">
-          Agenda tu evaluación y sesión gratuita
+          Agenda tu evaluación y sesión GRATUITA
           <span class="physo-btn__arrow" aria-hidden="true">→</span>
         </a>
       </div>

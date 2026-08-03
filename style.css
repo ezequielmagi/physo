@@ -208,9 +208,10 @@ h1, h2, h3, h4, h5 {
   background: var(--physo-naranja-vivo);
   color: #FFFFFF;
   font-family: var(--physo-font-cuerpo);
-  font-size: 1rem;
+  /* Un punto por encima del resto de los botones: es el CTA principal. */
+  font-size: 1.125rem;
   font-weight: 600;
-  padding: .95rem 1.6rem;
+  padding: 1.05rem 1.85rem;
   border-radius: var(--physo-radius);
   letter-spacing: .01em;
   gap: .85rem;
