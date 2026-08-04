@@ -44,10 +44,16 @@ get_header();
 
   <!-- ============ SELECTOR DE PERFIL ============ -->
 <section class="physo-section physo-section--claro physo-selector">
-  <img src="<?php echo esc_url( PHYSO_URI . '/assets/images/cruz-ocho.webp' ); ?>"
-       alt=""
-       aria-hidden="true"
-       class="physo-selector__deco-cruz">
+  <!-- Isotipo decorativo. En SVG para poder darle el naranja de marca:
+       el .webp venía en gris fijo y no se puede recolorear. -->
+  <svg class="physo-selector__deco-cruz" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <g fill="currentColor">
+      <rect x="44" y="0" width="12" height="100" rx="6"/>
+      <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(45 50 50)"/>
+      <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(90 50 50)"/>
+      <rect x="44" y="0" width="12" height="100" rx="6" transform="rotate(135 50 50)"/>
+    </g>
+  </svg>
   <div class="physo-container">
 
     <div class="physo-section-header physo-reveal">
@@ -60,7 +66,7 @@ get_header();
       <?php
       $physo_selector_cards = [
         [
-          'titulo'  => 'Tengo una condición médica',
+          'titulo'  => 'Tengo una condición médica, congénita o adquirida',
           'texto'   => 'Quiero moverme con más seguridad, recuperar energía y entender qué tipo de ejercicio es adecuado para mi condición de salud.',
           'boton'   => 'Conoce MOVIMIENTO ADAPTADO',
           'enlace'  => '/movimiento-adaptado',
@@ -127,7 +133,7 @@ get_header();
         <div class="physo-slider__track">
           <?php
           // 'foto' vacío cae en un avatar con las iniciales.
-          // 'destacado' pinta la card de naranja.
+          // El fondo de cada card lo alterna el CSS por posición.
           $testimonios = [
             [
               'nombre' => 'Alfredo Celis',
@@ -137,8 +143,7 @@ get_header();
             [
               'nombre'    => 'Farah Wong',
               'foto'      => 'testimonio-farah-wong.webp',
-              'destacado' => true,
-              'texto'     => 'Elijo Physo porque me apoyan a luchar por mi mejor versión, mi cuerpo necesita ejercicio y movimiento. Ellos me han hecho entender que tener un cuerpo saludable es elegirse día a día. Y aunque todos los días no podré dar lo mejor de mí sigo intentándolo.',
+              'texto'     =>'Elijo Physo porque me apoyan a luchar por mi mejor versión, mi cuerpo necesita ejercicio y movimiento. Ellos me han hecho entender que tener un cuerpo saludable es elegirse día a día. Y aunque todos los días no podré dar lo mejor de mí sigo intentándolo.',
             ],
             [
               'nombre' => 'Rosario Olivera',
@@ -146,15 +151,9 @@ get_header();
               'texto'  => 'Elijo Physo porque el entrenamiento personalizado me permite hacer ejercicios de forma segura y adaptadas a mis necesidades. Valoro mucho contar con profesionales que entienden mi condición y supervisan mi progreso de cerca. Esto me da la confianza necesaria para mantenerme activa y cuidar mejor de mi salud cada día.',
             ],
             [
-              'nombre' => 'Marta Soler',
-              'cargo'  => 'Empresaria',
-              'foto'   => 'testimonio-marta-soler.webp',
-              'texto'  => 'La atención y el cuidado al detalle son excepcionales. Realmente se preocupan por tu bienestar a largo plazo.',
-            ],
-            [
               'nombre' => 'Marisol Leyva',
               'foto'   => 'testimonio-marisol-leyva.webp',
-              'texto'  => 'Después de años lidiando con dolores crónicos y diagnósticos incompletos, encontrar a Physo fue el alivio que mi cuerpo y mi familia tanto esperábamos. Gracias a su evaluación funcional y al trato humano de su increíble equipo, hoy no solo entiendo mi salud, sino que he recuperado la independencia para caminar sin molestias y vivir con alegría. Es mucho más que un entrenamiento; es el lugar donde encontré los resultados reales que me devolvieron la libertad de moverme.',
+              'texto'  => 'Después de años lidiando con dolores crónicos y diagnósticos incompletos, encontrar a Physo fue el alivio que mi cuerpo y mi familia tanto esperábamos. Gracias a su evaluación funcional y al trato humano de su increíble equipo, hoy no solo entiendo mi salud, sino que he recuperado la independencia para caminar sin molestias y vivir con alegría.',
             ],
             [
               'nombre' => 'Sergio Yap',
@@ -174,8 +173,6 @@ get_header();
           ];
 
           foreach ( $testimonios as $t ) :
-            $destacado = ! empty( $t['destacado'] );
-
             // Iniciales para el avatar cuando todavía no hay foto.
             $partes    = preg_split( '/\s+/', trim( $t['nombre'] ) );
             $iniciales = mb_strtoupper( mb_substr( $partes[0], 0, 1 ) );
@@ -184,7 +181,7 @@ get_header();
             }
             ?>
             <div class="physo-slider__slide">
-              <div class="physo-testimonio__card<?php echo $destacado ? ' physo-testimonio__card--destacado' : ''; ?>">
+              <div class="physo-testimonio__card">
                 <span class="physo-testimonio__comilla" aria-hidden="true">&rdquo;</span>
                 <p class="physo-testimonio__texto">&ldquo;<?php echo esc_html( $t['texto'] ); ?>&rdquo;</p>
                 <div class="physo-testimonio__persona">
@@ -314,7 +311,7 @@ get_header();
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section class="physo-section physo-section--crema physo-faq-section">
+  <section class="physo-section physo-faq-section">
     <div class="physo-container">
       <div class="physo-section-header physo-reveal">
         <h2>Preguntas frecuentes</h2>
@@ -325,33 +322,53 @@ get_header();
         $faqs = [
           [
             'q'    => '¿Qué es Physo?',
-            'a'    => 'Physo es un centro de acompañamiento integral en Lima orientado a mejorar la funcionalidad del cuerpo, el movimiento, los hábitos y el bienestar general. Su enfoque combina ejercicio supervisado, nutrición clínica e integral y regulación del sistema nervioso.',
+            'a'    => "Physo es una boutique de movimiento supervisado para personas con condiciones médicas, lesiones, alteraciones posturales o miedo a volver a lesionarse.\n\nA través del movimiento, regulación del sistema nervioso y seguimiento personalizado, buscamos que las personas vuelvan a moverse con más seguridad y confianza.",
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a16,16,0,1,1,16,16A16,16,0,0,1,112,84Z"/></svg>',
           ],
           [
             'q'    => '¿Qué servicios ofrece Physo?',
-            'a'    => 'Physo ofrece tres servicios principales: Movimiento Adaptado para personas con condiciones médicas, Movimiento Evolutivo para lesiones, alteraciones posturales y fortalecimiento estructural, y Yoga Nidra como práctica guiada orientada al descanso, la recuperación y la regulación del sistema nervioso.',
+            'a'    => 'Physo cuenta con tres principales servicios:',
+            // 'items' es opcional: si está, se pinta como lista debajo del texto.
+            'items' => [
+              [
+                'titulo' => 'Movimiento Adaptado',
+                'texto'  => 'Para personas con condiciones médicas que necesitan ejercicio supervisado y adaptado a su estado de salud.',
+              ],
+              [
+                'titulo' => 'Movimiento Evolutivo',
+                'texto'  => 'Orientado a lesiones, alteraciones posturales y fortalecimiento estructural para mejorar estabilidad, control del movimiento y prevenir recaídas.',
+              ],
+              [
+                'titulo' => 'Presencia',
+                'texto'  => 'Servicio orientado a la regulación del sistema nervioso mediante una combinación de prácticas inspiradas principalmente en Yoga Nidra y complementadas con Yoga Restaurativo, enfocadas en el descanso profundo, la recuperación física y el bienestar emocional.',
+              ],
+            ],
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-48-56H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0,32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"/></svg>',
           ],
           [
             'q'    => '¿Para quién está pensado Physo?',
-            'a'    => 'Physo está pensado para quienes necesitan un enfoque más personalizado que el de un gimnasio tradicional: personas con condiciones médicas, lesiones, molestias recurrentes, alteraciones posturales o quienes buscan fortalecer su cuerpo con mayor seguridad y criterio.',
+            'a'    => "Physo está pensado para personas que sienten que necesitan una forma más segura, consciente y personalizada de moverse.\n\nAcompañamos personas con condiciones médicas, lesiones, alteraciones posturales, dolor recurrente o miedo a volver a lesionarse. También trabajamos con personas que buscan fortalecer su cuerpo, recuperar confianza y volver a hacer actividades que disfrutan.",
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48ZM32,64H224V96H32ZM32,192V112H224v80Z"/></svg>',
           ],
           [
             'q'    => '¿Cómo comienza el proceso en Physo?',
-            'a'    => 'El proceso comienza con una evaluación funcional y una sesión de prueba gratuita. En ese primer encuentro se observan variables como movilidad, estabilidad, fuerza funcional, postura, dolor, fatiga y respuesta al movimiento, para orientar el trabajo de forma más precisa.',
+            'a'    => "Todo comienza con una evaluación funcional y sesión de prueba gratuita.\n\nDurante esta primera visita realizamos una conversación inicial sobre antecedentes, hábitos, molestias y objetivos de la persona. Además, evaluamos distintos aspectos del movimiento como movilidad, estabilidad, propiocepción, postura, control motor y fuerza funcional.\n\nLa experiencia también incluye una medición de composición corporal que ayuda a comprender mejor el punto de partida de cada persona (próximamente).",
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M230.93,220a8,8,0,0,1-6.93,4H32a8,8,0,0,1-6.92-12l16-27.71A92.06,92.06,0,0,1,36,140V88a92,92,0,0,1,184,0v52a92.06,92.06,0,0,1-5.08,44.29l16,27.71A8,8,0,0,1,230.93,220ZM196,88a68,68,0,0,0-136,0v52a68,68,0,0,0,136,0Zm-36,52a8,8,0,0,0-8-8H136V120a8,8,0,0,0-16,0v12H108a8,8,0,0,0,0,16h12v12a8,8,0,0,0,16,0V148h12A8,8,0,0,0,160,140Z"/></svg>',
           ],
           [
             'q'    => '¿Es seguro hacer ejercicio en Physo si tengo una condición médica o una lesión?',
-            'a'    => 'Sí. El trabajo en Physo se adapta a la situación de cada caso, con supervisión constante, progresión gradual y ajustes según la respuesta del cuerpo. En algunos casos específicos también puede solicitarse autorización médica para empezar.',
+            'a'    => "Sí. La metodología Physo está diseñada para personas que necesitan un enfoque más supervisado y adaptado a su realidad física.\n\nAntes de iniciar cualquier proceso realizamos una evaluación funcional para comprender cómo se encuentra el cuerpo y adaptar el trabajo según la condición, antecedentes y objetivos de cada persona. Además, todas las sesiones son supervisadas de forma cercana por el equipo.",
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M230.93,220a8,8,0,0,1-6.93,4H32a8,8,0,0,1-6.92-12l16-27.71A92.06,92.06,0,0,1,36,140V88a92,92,0,0,1,184,0v52a92.06,92.06,0,0,1-5.08,44.29l16,27.71A8,8,0,0,1,230.93,220ZM196,88a68,68,0,0,0-136,0v52a68,68,0,0,0,136,0Z"/></svg>',
           ],
           [
             'q'    => '¿Necesito experiencia previa para empezar?',
             'a'    => 'No. Muchas personas llegan sin experiencia previa en ejercicio o después de haber pasado por dolor, inactividad, cirugía o rehabilitación. El trabajo comienza desde el punto en el que se encuentra cada cuerpo y progresa de forma guiada.',
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8H96a8,8,0,0,0,8-8V160h48v56a8,8,0,0,0,8,8h56a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H168V152a8,8,0,0,0-8-8H96a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"/></svg>',
+          ],
+          [
+            'q'    => '¿Cómo hacen seguimiento a mi proceso?',
+            'a'    => "Después de la evaluación funcional inicial se entrega un Plan de Trabajo Funcional, donde se plantea una proyección del proceso según los objetivos y necesidades de cada persona.\n\nAdemás, durante las sesiones se realizan anotaciones sobre la respuesta del cuerpo al ejercicio, ajustes realizados y evolución del proceso. Periódicamente también se realizan evaluaciones funcionales de seguimiento para observar avances y adaptar el trabajo según la evolución de cada caso.",
+            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31,40,179.31V200H224A8,8,0,0,1,232,208Z"/></svg>',
           ],
         ];
         foreach ( $faqs as $faq ) : ?>
@@ -365,7 +382,23 @@ get_header();
               </span>
             </button>
             <div class="physo-faq__answer">
-              <p><?php echo esc_html( $faq['a'] ); ?></p>
+              <?php
+              // Una respuesta puede traer varios párrafos separados por
+              // una línea en blanco; las de un solo bloque no cambian.
+              foreach ( preg_split( '/\R\s*\R/', trim( $faq['a'] ) ) as $physo_parrafo ) : ?>
+                <p><?php echo esc_html( $physo_parrafo ); ?></p>
+              <?php endforeach; ?>
+
+              <?php if ( ! empty( $faq['items'] ) ) : ?>
+                <ul class="physo-faq__lista">
+                  <?php foreach ( $faq['items'] as $physo_item ) : ?>
+                    <li>
+                      <strong><?php echo esc_html( $physo_item['titulo'] ); ?>:</strong>
+                      <?php echo esc_html( $physo_item['texto'] ); ?>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
             </div>
           </div>
         <?php endforeach; ?>

@@ -68,6 +68,8 @@ Text Domain: physo
   --physo-naranja-vivo-hover: #C45F05;
   /* Gris muy claro y frío para secciones que no llevan el crema. */
   --physo-gris-claro:    #F7F8FA;
+  /* Tinte suave del naranja, para fondos amplios como las cards. */
+  --physo-naranja-claro: #FBE4D0;
   --physo-blanco:        #FFFFFF;
   --physo-texto:         #2C2C2C;
   --physo-texto-claro:   #666666;
@@ -93,7 +95,9 @@ Text Domain: physo
   --physo-space-sm:  1rem;
   --physo-space-md:  2rem;
   --physo-space-lg:  4rem;
-  --physo-space-xl:  6rem;
+  /* Espaciado vertical de las secciones. Bajó de 6rem a pedido del
+     cliente, para que la transición entre bloques sea más fluida. */
+  --physo-space-xl:  4.5rem;
 
   --physo-container: 1200px;
   --physo-radius:    8px;
@@ -641,11 +645,13 @@ h1, h2, h3, h4, h5 {
 
 .physo-selector__deco-cruz {
   position: absolute;
-  bottom: 0px;
-  right: -11%;
-  width: 280px;
-  /* Sobre el fondo claro la cruz resaltaba demasiado; queda como textura. */
-  opacity: .35;
+  /* Apenas recortado por el borde, para que se reconozca la forma. */
+  bottom: -46px;
+  right: -46px;
+  width: 240px;
+  height: 240px;
+  color: var(--physo-naranja-vivo);
+  opacity: .3;
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -669,7 +675,8 @@ h1, h2, h3, h4, h5 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--physo-space-md);
-  max-width: 900px;
+  /* Más anchas que antes (900px) para darles protagonismo. */
+  max-width: 1040px;
   margin: 0 auto;
   overflow: visible;
 }
@@ -683,7 +690,7 @@ h1, h2, h3, h4, h5 {
 
 .physo-selector__card-image {
   width: 100%;
-  height: 240px;
+  height: 300px;
   overflow: hidden;
   border-radius: var(--physo-radius-lg) var(--physo-radius-lg) 0 0;
 }
@@ -695,11 +702,6 @@ h1, h2, h3, h4, h5 {
   display: block;
 }
 
-.physo-selector__img-placeholder {
-  width: 100%;
-  height: 240px;
-  background: linear-gradient(135deg, #c8d8e8 0%, #a8b8c8 100%);
-}
 
 .physo-selector__card-body {
   padding: 1.75rem;
@@ -709,7 +711,7 @@ h1, h2, h3, h4, h5 {
   flex-direction: column;
   flex: 1;
 }
-.physo-selector__card-body .physo-btn { margin-top: auto; align-self: flex-start; }
+.physo-selector__card-body .physo-btn { margin-top: auto; align-self: center; }
 
 .physo-selector__card-body h3 {
   font-family: var(--physo-font-titulo);
@@ -789,6 +791,14 @@ h1, h2, h3, h4, h5 {
   outline: 3px solid var(--physo-naranja-vivo);
   outline-offset: -3px;
 }
+/* Play más grande en las cards del selector: son la puerta de entrada a
+   cada servicio y tienen que leerse como interactivas. */
+.physo-selector__card-image .physo-video-trigger__play {
+  width: 68px;
+  height: 52px;
+  border-radius: 12px;
+}
+.physo-selector__card-image .physo-video-trigger__play svg { width: 18px; height: 21px; }
 
 /* ── Reproductor flotante ───────────────────────────────── */
 .physo-video-modal {
@@ -920,11 +930,11 @@ h1, h2, h3, h4, h5 {
   display: flex;
   flex-direction: column;
 }
-/* Una card en naranja como acento, según el mockup. */
-.physo-testimonio__card--destacado {
-  background: var(--physo-naranja-vivo);
-  color: var(--physo-blanco);
-}
+/* Los fondos se alternan por posición: blanco, beige y naranja claro.
+   Al ir por nth-child, agregar o quitar testimonios no rompe el ciclo. */
+.physo-testimonios .physo-slider__slide:nth-child(3n+1) .physo-testimonio__card { background: var(--physo-blanco); }
+.physo-testimonios .physo-slider__slide:nth-child(3n+2) .physo-testimonio__card { background: var(--physo-crema); }
+.physo-testimonios .physo-slider__slide:nth-child(3n)   .physo-testimonio__card { background: var(--physo-naranja-claro); }
 
 .physo-testimonio__comilla {
   font-family: Georgia, 'Times New Roman', serif;
@@ -934,10 +944,6 @@ h1, h2, h3, h4, h5 {
   opacity: .18;
   display: block;
   margin-bottom: .5rem;
-}
-.physo-testimonio__card--destacado .physo-testimonio__comilla {
-  color: var(--physo-blanco);
-  opacity: .45;
 }
 
 .physo-testimonio__texto {
@@ -973,9 +979,6 @@ h1, h2, h3, h4, h5 {
   font-weight: 700;
   letter-spacing: .02em;
 }
-.physo-testimonio__card--destacado .physo-testimonio__foto--iniciales {
-  background: rgba(255,255,255,.28);
-}
 .physo-testimonio__identidad {
   display: flex;
   flex-direction: column;
@@ -996,8 +999,6 @@ h1, h2, h3, h4, h5 {
   font-size: var(--physo-size-sm);
   line-height: 1.25;
 }
-.physo-testimonio__card--destacado .physo-testimonio__nombre { color: var(--physo-blanco); }
-.physo-testimonio__card--destacado .physo-testimonio__cargo { color: rgba(255,255,255,.75); }
 
 /* ============================================================
    SLIDER
@@ -1197,6 +1198,21 @@ h1, h2, h3, h4, h5 {
 /* ============================================================
    FAQ
    ============================================================ */
+/* El h2 caía en el estilo genérico de encabezados (~24px) y quedaba por
+   debajo del resto de las secciones. Se iguala al de "Queremos entender
+   tu punto de partida", que es el encabezado centrado equivalente.
+   Va acotado a esta sección: el genérico .physo-section-header h2 tiene
+   más especificidad que las clases del formulario y se las pisaría. */
+.physo-faq-section .physo-section-header h2 {
+  font-size: 34px;
+  color: var(--physo-azul);
+  margin-bottom: .75rem;
+}
+.physo-faq-section .physo-section-header p {
+  font-size: 20px;
+  color: var(--physo-texto-claro);
+}
+
 .physo-faq {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1250,12 +1266,33 @@ h1, h2, h3, h4, h5 {
   overflow: hidden;
   transition: max-height .4s ease;
 }
+/* El padding lateral va en todos los párrafos, pero el de arriba y el
+   de abajo sólo en los extremos: si no, una respuesta de dos párrafos
+   abre un hueco doble en el medio. */
 .physo-faq__answer p {
-  padding: .25rem 1.25rem 1.25rem;
+  padding: 0 1.25rem;
   color: var(--physo-texto-claro);
   line-height: 1.8;
   font-size: var(--physo-size-sm);
 }
+.physo-faq__answer p:first-child { padding-top: .25rem; }
+.physo-faq__answer p:last-child  { padding-bottom: 1.25rem; }
+.physo-faq__answer p + p         { margin-top: .75rem; }
+
+.physo-faq__lista {
+  margin: .5rem 0 0;
+  padding: 0 1.25rem 1.25rem 2.4rem;
+  list-style: disc;
+  color: var(--physo-texto-claro);
+  line-height: 1.8;
+  font-size: var(--physo-size-sm);
+}
+.physo-faq__lista li { margin-bottom: .6rem; }
+.physo-faq__lista li:last-child { margin-bottom: 0; }
+.physo-faq__lista li::marker { color: var(--physo-naranja-vivo); }
+.physo-faq__lista strong { color: var(--physo-azul); font-weight: 700; }
+/* Con lista, el párrafo introductorio no lleva el aire del final. */
+.physo-faq__answer p:has(+ .physo-faq__lista) { padding-bottom: 0; }
 
 /* Estado abierto */
 .physo-faq__item.is-open {
@@ -1402,7 +1439,7 @@ h1, h2, h3, h4, h5 {
 }
 
 @media (max-width: 768px) {
-  :root { --physo-space-xl: 3rem; --physo-space-lg: 2rem; }
+  :root { --physo-space-xl: 2.5rem; --physo-space-lg: 2rem; }
 
   .physo-container { padding-inline: 1.25rem; }
 
